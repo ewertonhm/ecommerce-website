@@ -27,11 +27,15 @@
 	</head>
     <header>
         <h1>Logado como: <?php echo $dados['0']['nome'];?></h1>
-		<a href="dashboard/logoutadm.php">Logout</a>
     </header>
 	<body>
         <?php
             require_once 'dashboard/usercount.php';
         ?>
+        <a href="dashboard/logoutadm.php">Listar Clientes</a> |
+        <a href="dashboard/logoutadm.php">Listar Administradores</a> |
+        <a href="dashboard/logoutadm.php">Listar Todos</a>
+        <br>
+        <a href="dashboard/logoutadm.php">Logout</a>
 	</body>
 </html>	
