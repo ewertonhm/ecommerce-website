@@ -28,6 +28,18 @@
 				pg_close($dbconn);
 				$_SESSION['logado'] = true;
 				$_SESSION['id_usuario'] = $resultado['0']['id'];
+				// remember-me e cookies setup
+				if(!empty($_POST["remember"])):
+					setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
+					setcookie ("senha",$_POST["senha"],time()+ (10 * 365 * 24 * 60 * 60));
+				else:
+					if(isset($_COOKIE["login"])):
+						setcookie ("login","");
+					endif;
+					if(isset($_COOKIE["senha"])):
+						setcookie ("senha","");	
+					endif;	
+				endif;	
 				// Alterar futuramente para a pagina do usuario ou pagina home, momentaneamente em uma pagina de testes.
 				header('Location: session.php');
 
@@ -76,7 +88,7 @@
       		<input type="password" id="password" name="senha" class="form-control" placeholder="Password" required>
       		<div class="checkbox mb-3">
         		<label>
-          			<input type="checkbox" value="remember-me"> Remember me
+          			<input type="checkbox" name="remember" value="remember-me"> Remember me
         		</label>
         	<button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Sign in</button>
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
