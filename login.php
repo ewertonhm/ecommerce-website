@@ -84,13 +84,13 @@
 			</div>	
 			<label for="login" class="sr-only">Login</label>
 			<input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
-      		<label for="password" class="sr-only">Password</label>
+      		<label for="password" class="sr-only">Senha</label>
       		<input type="password" id="password" name="senha" class="form-control" placeholder="Password" required>
       		<div class="checkbox mb-3">
         		<label>
-          			<input type="checkbox" name="remember" value="remember-me"> Remember me
+          			<input type="checkbox" name="remember" value="remember-me"> Lembrar me
         		</label>
-        	<button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Sign in</button>
+        	<button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Logar</button>
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
       		</div>
 		</form>
