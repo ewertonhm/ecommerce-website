@@ -90,7 +90,7 @@
         		<label>
           			<input type="checkbox" name="remember" value="remember-me"> Lembrar me
         		</label>
-        	<button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Logar</button>
+        	<button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Entrar</button>
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
       		</div>
 		</form>
