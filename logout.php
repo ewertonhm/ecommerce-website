@@ -1,5 +1,5 @@
 <?php
-	// Encerrando a sessão
+	// Encerrar a sessão
 	session_start();
 	session_unset();
 	session_destroy();
