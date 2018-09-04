@@ -13,14 +13,19 @@
 		//array para salvar as mensagens de erro
 		$erros = array();
         // passa os dados vindos do $_POST em suas respectivas variaveis
-        $nome = cleanstring($_POST['nome']);
+		$nome = cleanstring($_POST['nome']);
+		$login = cleanstring($_POST['login']);
+        $senha = cleanstring($_POST['senha']);
         $email = cleanstring($_POST['email']);
         $cpf = cleanstring($_POST['cpf']);
-        $bdate = cleanstring($_POST['bdate']);
+		$bdate = cleanstring($_POST['bdate']);
+		$telefone = cleanstring($_POST['telefone']);
         $celular = cleanstring($_POST['celular']);
         $endereco = cleanstring($_POST['endereco']);
-        $login = cleanstring($_POST['login']);
-        $senha = cleanstring($_POST['senha']);
+        $cidade = cleanstring($_POST['cidade']);
+		$estado = cleanstring($_POST['estado']);
+		$role = 'cliente';
+
 
         //echo $nome.$email.$cpf.$bdate.$celular.$login.$senha;
         // verifica se as variaveis (campos) estão vazias
@@ -42,11 +47,20 @@
             else:
                 // insere os dados no banco
 			    $senha = md5($senha);
-			    $query = "INSERT INTO usuarios (nome, email, cpf, bdate, celular, endereco, login, senha) 
-                            VALUES ('$nome', '$cpf', '$email', '$bdate', '$celular', '$endereco', '$login','$senha');";
+			    $query = "INSERT INTO usuarios (nome, login, senha, email, role) 
+                            VALUES ('$nome','$login','$senha','$email','$role');";
 			    if(pg_query($dbconn, $query)):
-			    //$resultado = pg_fetch_all($cadastrar_usuario);
-                $erros[] = "<li> Cadastro realizado com sucesso</li>";
+					$query = "SELECT * FROM usuarios WHERE login = '$login'";
+					$consulta_usuario = pg_query($dbconn, $query);
+					$resultado = pg_fetch_all($consulta_usuario);
+					$id = $resultado['0']['id'];
+					$query = "INSERT INTO dadosUsuarios(nome, cpf, datadenasc, telefone, celular, endereco, cidade, estado, cod_usuario)
+					VALUES ('$nome', '$cpf','$bdate', '$telefone','$celular','$endereco','$cidade','$estado','$id')";
+					if(pg_query($dbconn, $query)):		
+						$erros[] = "<li> Cadastro realizado com sucesso</li>";
+					else:
+						echo "erro";
+					endif;		
                 else:
                     echo "deu ruim";
                 endif;    
@@ -75,13 +89,19 @@
 		<hr>
 		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             Nome: <input type="text" name="nome"><br>
+			Login: <input type="text" name="login"><br>
+			Senha: <input type="password" name="senha"><br>
             Email: <input type="email" name="email"><br>
             CPF: <input type="float" name="cpf"><br>
             Data de Nascimento: <input type="date" name="bdate"><br>
+			Telefone: <input type="text" name="telefone"><br>
             Celular: <input type="text" name="celular"><br>
             Endereço: <input type="text" name="endereco"><br>
-            Login: <input type="text" name="login"><br>
-			Senha: <input type="password" name="senha"><br>
+			Cidade: <input type="text" name="cidade"><br>
+            Estado: <input type="text" name="estado"><br>
+
+
+
 			<button type="submit" name="btn-cadastrar">Cadastrar</button>
 		</form>
 	</body>	
