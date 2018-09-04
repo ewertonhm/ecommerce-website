@@ -27,7 +27,7 @@
 	</head>
     <header>
         <h1>Logado como: <?php echo $dados['0']['nome'];?></h1>
-		<a href="logoutadm.php">Logout</a>
+		<a href="dashboard/logoutadm.php">Logout</a>
     </header>
 	<body>
         <?php
