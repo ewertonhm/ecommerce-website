@@ -24,25 +24,28 @@
 			$query = "SELECT * FROM usuarios WHERE login = '$login' AND senha = '$senha'";
 			$resultado_usuario = pg_query($dbconn, $query);
 			$resultado = pg_fetch_all($resultado_usuario);
-			if($resultado['0']['login'] == $login AND $resultado['0']['senha'] == $senha):
-				pg_close($dbconn);
-				$_SESSION['logado'] = true;
-				$_SESSION['id_usuario'] = $resultado['0']['id'];
-				// remember-me e cookies setup
-				if(!empty($_POST["remember"])):
-					setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
-					setcookie ("senha",$_POST["senha"],time()+ (10 * 365 * 24 * 60 * 60));
-				else:
-					if(isset($_COOKIE["login"])):
-						setcookie ("login","");
-					endif;
-					if(isset($_COOKIE["senha"])):
-						setcookie ("senha","");	
-					endif;	
-				endif;	
+			if($resultado['0']['login'] == $login AND $resultado['0']['senha'] == $senha):    
+                    pg_close($dbconn);
+				    $_SESSION['logado'] = true;
+				    $_SESSION['id_usuario'] = $resultado['0']['id'];
+				    // remember-me e cookies setup
+				    if(!empty($_POST["remember"])):
+					    setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
+					    setcookie ("senha",$_POST["senha"],time()+ (10 * 365 * 24 * 60 * 60));
+				    else:
+					    if(isset($_COOKIE["login"])):
+						    setcookie ("login","");
+					    endif;
+					    if(isset($_COOKIE["senha"])):
+						    setcookie ("senha","");	
+					    endif;	
+                    endif;   	
 				// Alterar futuramente para a pagina do usuario ou pagina home, momentaneamente em uma pagina de testes.
-				header('Location: session.php');
-
+                if($resultado['0']['role'] != 'ADM'):
+                    $erros[] = "<li> Acesso negado.</li>";
+                else:
+                    header('Location: dashboard.php');
+                endif; 
 			else:
 				$erros[] = "<li> Usuário ou senha incorreto</li>";
 			endif;	

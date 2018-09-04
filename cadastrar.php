@@ -29,8 +29,7 @@
 
         //echo $nome.$email.$cpf.$bdate.$celular.$login.$senha;
         // verifica se as variaveis (campos) estão vazias
-        //if(empty($login) or empty($senha) or empty($email) or empty($cpf) or empty($celular) or empty($nome)):
-        if(empty($login) or empty($senha) or empty($nome) or empty($email)):    
+        if(empty($login) or empty($senha) or empty($email) or empty($cpf) or empty($celular) or empty($nome)):  
 			$erros[] = "<li> Todos os campos devem ser preenchidos. </li>";
         else:
             // verificar se o usuario ja existe (melhorar) ******************************
@@ -39,11 +38,11 @@
 			$consulta_usuario = pg_query($dbconn, $query);
 			$resultado = pg_fetch_all($consulta_usuario);
 			if($resultado['0']['login'] == $login):
-				$erros[] = "<li> Login já cadastrado </li>";
+				$erros[] = "<li> Login já cadastrado. </li>";
 			elseif($resultado['0']['email'] == $email):
-				$erros[] = "<li> Email já cadastrado </li>";
+				$erros[] = "<li> Email já cadastrado. </li>";
 			elseif($resultado['0']['cpf'] == $cpf):
-				$erros[] = "<li> CPF já cadastrado </li>";
+				$erros[] = "<li> CPF já cadastrado. </li>";
             else:
                 // insere os dados no banco
 			    $senha = md5($senha);
@@ -57,12 +56,12 @@
 					$query = "INSERT INTO dadosUsuarios(nome, cpf, datadenasc, telefone, celular, endereco, cidade, estado, cod_usuario)
 					VALUES ('$nome', '$cpf','$bdate', '$telefone','$celular','$endereco','$cidade','$estado','$id')";
 					if(pg_query($dbconn, $query)):		
-						$erros[] = "<li> Cadastro realizado com sucesso</li>";
+						$erros[] = "<li> Cadastro realizado com sucesso.</li>";
 					else:
-						echo "erro";
+						$erros[] = "<li> Erro inesperado [COD=223]. </li>";
 					endif;		
                 else:
-                    echo "deu ruim";
+					$erros[] = "<li> Erro inesperado [COD=222]. </li>";
                 endif;    
             endif;
 		endif;	
