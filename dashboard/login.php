@@ -1,12 +1,12 @@
 <?php
 	// Conexão 
-	require_once 'db_connect.php';
+	require_once '..\db_connect.php';
 
 	// Sessão
 	session_start();
 
 	// Include
-	include "functions.php";
+	include '..\functions.php';
 
 	// Verificar se o botão ja foi clicado
 	if(isset($_POST['btn-entrar'])):
@@ -44,7 +44,7 @@
                 if($resultado['0']['role'] != 'ADM'):
                     $erros[] = "<li> Acesso negado.</li>";
                 else:
-                    header('Location: dashboard/index.php');
+                    header('Location: index.php');
                 endif; 
 			else:
 				$erros[] = "<li> Usuário ou senha incorreto</li>";
@@ -63,7 +63,7 @@
     	<link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
     	<!-- Custom styles for this template -->
-    	<link href="css/login.css" rel="stylesheet">
+    	<link href="../css/login.css" rel="stylesheet">
    		<!-- Bootstrapcdn CSS -->
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 		

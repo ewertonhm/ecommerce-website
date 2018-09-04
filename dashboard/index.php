@@ -8,7 +8,7 @@
 
 	// Verifica se o usuario está logado, caso não, redireciona para login.php
 	if(!isset($_SESSION['logado'])):
-		header('location: ..\admin.php');
+		header('location: login.php');
 	endif;	
 
 	// Dados
@@ -32,10 +32,10 @@
         <?php
             require_once 'usercount.php';
         ?>
-        <a href="logoutadm.php">Listar Clientes</a> |
-        <a href="logoutadm.php">Listar Administradores</a> |
-        <a href="logoutadm.php">Listar Todos</a>
+        <a href="querys\list-client.php">Listar Clientes</a> |
+        <a href="querys\list-admins.php">Listar Administradores</a> |
+        <a href="querys\list-allusers.php">Listar Todos</a>
         <br>
-        <a href="logoutadm.php">Logout</a>
+        <a href="logout.php">Logout</a>
 	</body>
 </html>	
