@@ -1,16 +1,13 @@
 <?php 
 	// Variaveis de conexão
 	$servername = "localhost";
-	$username = "root";
-	$password = "";
+	$username = "postgres";
+	$password = "postgres";
 	$db_name = "database";
+	$port = "5432";
+	$appName = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 	// Conexão com o banco de dados
-	$link = mysqli_connect($servername, $username, $password, $db_name);
-
-	if(mysqli_connect_error()):
-		echo "Falha na conexão: ".mysqli_connect_error();
-	//else:
-	//	echo 'Ok';
-	endif;	
+	$db_string = "host=$servername port=$port dbname=$db_name user=$username password=$password options='--application_name=$appName'";
+	$dbconn = pg_connect($db_string);
  ?>
