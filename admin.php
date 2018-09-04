@@ -44,7 +44,7 @@
                 if($resultado['0']['role'] != 'ADM'):
                     $erros[] = "<li> Acesso negado.</li>";
                 else:
-                    header('Location: dashboard.php');
+                    header('Location: dashboard/index.php');
                 endif; 
 			else:
 				$erros[] = "<li> Usuário ou senha incorreto</li>";

@@ -1,14 +1,14 @@
 <?php
 	/* Essa pagina serve apenar para fins de testes e deve ser removida antes de passar para a branch master do projeto. */
 	// Conexão
-	require_once 'db_connect.php';
+	require_once '..\db_connect.php';
 
 	// Sessão
 	session_start();
 
 	// Verifica se o usuario está logado, caso não, redireciona para login.php
 	if(!isset($_SESSION['logado'])):
-		header('location: admin.php');
+		header('location: ..\admin.php');
 	endif;	
 
 	// Dados
@@ -30,12 +30,12 @@
     </header>
 	<body>
         <?php
-            require_once 'dashboard/usercount.php';
+            require_once 'usercount.php';
         ?>
-        <a href="dashboard/logoutadm.php">Listar Clientes</a> |
-        <a href="dashboard/logoutadm.php">Listar Administradores</a> |
-        <a href="dashboard/logoutadm.php">Listar Todos</a>
+        <a href="logoutadm.php">Listar Clientes</a> |
+        <a href="logoutadm.php">Listar Administradores</a> |
+        <a href="logoutadm.php">Listar Todos</a>
         <br>
-        <a href="dashboard/logoutadm.php">Logout</a>
+        <a href="logoutadm.php">Logout</a>
 	</body>
 </html>	

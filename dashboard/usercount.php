@@ -1,5 +1,5 @@
 <?php       
-            require_once 'db_connect.php';
+            require_once '..\db_connect.php';
             $query = "SELECT * FROM usuarios";
             $resultado = pg_query($dbconn, $query);
             $dados = pg_fetch_all($resultado);
