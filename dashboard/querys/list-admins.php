@@ -7,6 +7,6 @@
     $usr = pg_fetch_all($resultado_usuario);
 
     foreach($usr as $usuarios):
-        echo "ID: ".$usuarios['id']." | Nome: ".$usuarios['nome']." | Login: ".$usuarios['login']." | Email: ".$usuarios['email']." | CPF: ".$usuarios['cpf'];
+        echo "ID: ".$usuarios['id']." | Nome: ".$usuarios['nome']." | Login: ".$usuarios['login']." | Email: ".$usuarios['email']." | CPF: ".$usuarios['cpf']."<br>";
     endforeach;    
 ?>
