@@ -57,17 +57,19 @@
 
 	</head>
 	<body class="text-center">
-		<?php
-			// se existir erros, exibe
-			if(!empty($erros)):
-				foreach ($erros as $erro):
-					echo $erro;
-				endforeach;
-			endif;	
-		?>
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-			<img class="mb-4" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<div class="text-center mb-4">
+				<img class="mb-4" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+				<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+				<?php
+					// se existir erros, exibe
+					if(!empty($erros)):
+						foreach ($erros as $erro):
+							echo $erro;
+						endforeach;
+					endif;	
+				?>
+			</div>	
 			<label for="login" class="sr-only">Login</label>
 			<input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
       		<label for="password" class="sr-only">Password</label>
