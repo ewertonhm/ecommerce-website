@@ -42,11 +42,21 @@
 	<head>
 		<title>Login</title>
 		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<meta name="description" content="">
+    	<meta name="author" content="Ewerton H Marschalk">
+    	<link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+    	<!-- Custom styles for this template -->
+    	<link href="css/login.css" rel="stylesheet">
+   		<!-- Bootstrapcdn CSS -->
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+		
+		<!-- Bootstrapcdn JS -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
 	</head>
-	<body>
-		<h1> Login </h1>
+	<body class="text-center">
 		<?php
 			// se existir erros, exibe
 			if(!empty($erros)):
@@ -55,11 +65,20 @@
 				endforeach;
 			endif;	
 		?>
-		<hr>
-		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-			Login: <input type="text" name="login"><br>
-			Senha: <input type="password" name="senha">
-			<button type="submit" name="btn-entrar">Login</button>
+		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+			<img class="mb-4" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<label for="login" class="sr-only">Login</label>
+			<input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
+      		<label for="password" class="sr-only">Password</label>
+      		<input type="password" id="password" name="senha" class="form-control" placeholder="Password" required>
+      		<div class="checkbox mb-3">
+        		<label>
+          			<input type="checkbox" value="remember-me"> Remember me
+        		</label>
+        	<button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Sign in</button>
+      		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
+      		</div>
 		</form>
 	</body>	
 </html>	
