@@ -1,18 +1,6 @@
 <?php
 	// Titulo da Pagina
 	$page_title = 'Title';
-    
-    // caso necessário adicionar codigos extras ao Header, exemplo:
-	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
-    $extras = "";
-
-    // caso queira utilizar uma classe diferente no body, exemplo:
-    // $bodyclass = "text-center";
-    $bodyclass = "";
-
-    // caso a pagina esteja dentro de uma pasta descomentar
-	// $level = "..";
-    $level = "";
 ?>
 
 <!-- <html> -->

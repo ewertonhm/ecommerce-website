@@ -60,7 +60,7 @@
 <!-- <body> -->
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 			<div class="text-center mb-4">
-				<img class="mb-4" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+				<img class="mb-4" src="https://png.icons8.com/nolan/96/000000/musical-notes.png" alt="" width="72" height="72">
 				<h1 class="h3 mb-3 font-weight-normal">Painel de Controle</h1>
 				<?php
 					// se existir erros, exibe

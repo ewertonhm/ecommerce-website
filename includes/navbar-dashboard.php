@@ -5,39 +5,37 @@
     // link ao clicar no nome da pagina
     $pagetitlelink = $_SERVER['PHP_SELF'];
     // Texto Menu 1
-    $textomenu1 = "Pagina Inicial";
+    $textomenu1 = "Home";
     // Link Menu 1
     $linkmenu1 ="home.php";
     // Texto Menu 2
-    $textomenu2 = "Catalogo";
+    $textomenu2 = "#";
     // Link Menu 2
     $linkmenu2 = "#";
     // Texto Menu 3
-    $textomenu3 = "Promoções";
+    $textomenu3 = "#";
     // Link Menu 3
     $linkmenu3 = "#";
-    // Texto Dropdown (futuramente exibir o nome do usuario logado ou Logar-se nesse campo)
-    $dropdownname = "Area do Usuario";
+    // Texto Dropdown
+    $dropdownname = "Dropdown";
     // Texto Dropdown Menu 1
-    $textdropdown1 = "Cadastrar";
+    $textdropdown1 = "#";
     // Link Dropdown Menu 1
-    $linkdropdown1 = "cadastrar.php";
+    $linkdropdown1 = "#";
     // Texto Dropdown Menu 2
-    $textdropdown2 = "Entrar";
+    $textdropdown2 = "#";
     // Link Dropdown Menu 2
-    $linkdropdown2 = "login.php";
+    $linkdropdown2 = "#";
     // Texto Dropdown Menu 3
-    $textdropdown3 = "Sair";
+    $textdropdown3 = "#";
     // Link Dropdown Menu 3
-    $linkdropdown3 = "logout.php";
+    $linkdropdown3 = "#";
 echo "
 <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-    <div class ='container'>
     <a class='navbar-brand mb-0' href='$pagetitlelink'>
         <img class='mb-0' src='https://png.icons8.com/nolan/96/000000/musical-notes.png' alt='' width='30' height='30'>
-    </a>
-    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
-        <span class='navbar-toggler-icon'></span>
+    </a> 
+    <span class='navbar-toggler-icon'></span>
     </button>
     <div class='collapse navbar-collapse' id='navbarNavDropdown'>
         <ul class='navbar-nav mr-auto'>
@@ -67,7 +65,6 @@ echo "
             <input class='form-control ml-4 mr-2' type='search' placeholder='Buscar'>
             <button class='btn btn-default' type='submit'>Ok</button>
         </form>
-    </div>
     </div>
 </nav>
 ";?>
