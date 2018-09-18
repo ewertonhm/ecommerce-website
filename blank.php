@@ -16,7 +16,7 @@
 <!-- <html> -->
 <?php include "includes/top.php";?>
 <!-- <body> -->
-    CONTEUDO DO BODY AQUI
+    <!-- CONTEUDO DO BODY AQUI -->
 <!-- </body> -->
 <?php include "includes/bottom.php";?>
 <!-- </html> -->
