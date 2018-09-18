@@ -2,8 +2,6 @@
 	// Page Title
 	$page_title = 'Cadastro';
 
-	// Custom styles for this template
-	//$extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
 	
 	// Conexão 
 	require_once 'db_connect.php';

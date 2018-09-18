@@ -2,19 +2,6 @@
 	// Titul da Pagina
 	$page_title = 'Dashboard';
 
-	// Custom styles para esse template (pode ficar vaziu)
-	$extras = "";
-	// exemplo:
-	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
-	
-	// Body Class (pode ficar vaziu)
-	$bodyclass = "";
-	// exemplo:
-	// $bodyclass = "text-center";
-		
-	// arruma o caminho do css
-	$level = "..";
-
 	/* Essa pagina serve apenar para fins de testes e deve ser removida antes de passar para a branch master do projeto. */
 	// Conexão
 	require_once '..\db_connect.php';
@@ -36,7 +23,7 @@
 
 <!-- <html> -->
 <?php 
-	include "../includes/top.php";
+	include "../includes/top-dashboard.php";
 	include "../includes/navbar.php";	
 ?>
 <!-- <body> -->

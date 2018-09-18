@@ -13,6 +13,7 @@
 		<link href='node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
 		<!-- Bootstrap Custom CSS -->
 		<link href='node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+		<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>
 	</head>
-	<body>";
+	<body class='text-center'>";
 ?>

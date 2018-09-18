@@ -2,15 +2,6 @@
 	// Titul da Pagina
 	$page_title = 'Dashboard Login';
 
-	// Custom styles para esse template (pode ficar vaziu)
-	$extras = "<link href='../node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
-	
-	// Body Class (pode ficar vaziu)
-	$bodyclass = "text-center";
-
-	// arruma o caminho do css
-	$level = "..";
-
 	// Conexão 
 	require_once '..\db_connect.php';
 
@@ -65,7 +56,7 @@
 	endif;
 ?>
 <!-- <html> -->
-<?php include "../includes/top.php";?>
+<?php include "../includes/top-login-dashboard.php";?>
 <!-- <body> -->
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 			<div class="text-center mb-4">

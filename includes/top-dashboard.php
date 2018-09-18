@@ -10,9 +10,9 @@
 		<meta name='author' content='Ewerton H Marschalk'>
 		<link rel='icon' href='https://getbootstrap.com/favicon.ico'>
 		<!-- Bootstrap CSS -->
-		<link href='node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
+		<link href='../node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
 		<!-- Bootstrap Custom CSS -->
-		<link href='node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+		<link href='../node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
 	</head>
 	<body>";
 ?>

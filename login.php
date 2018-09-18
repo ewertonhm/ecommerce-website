@@ -2,12 +2,6 @@
 	// Page Title
 	$page_title = 'Login';
 
-	// Custom styles for this template
-	$extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
-
-	// Body Class =
-	$bodyclass = "text-center";
-
 	// Conexão 
 	require_once 'db_connect.php';
 
@@ -60,7 +54,7 @@
 ?>
 
 <!-- <html> -->
-<?php include "includes/top.php";?>
+<?php include "includes/top-login.php";?>
 <!-- <body> -->
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 			<div class="text-center mb-4">
