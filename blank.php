@@ -4,10 +4,12 @@
 
     // Custom styles for this template
     $extras = "";
+    // exemplo:
 	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
 
     // Body Class = 
     $bodyclass = "";
+    // exemplo:
     // $bodyclass = "text-center";
 ?>
 
