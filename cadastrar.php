@@ -3,15 +3,8 @@
 	$page_title = 'Cadastro';
 
 	// Custom styles for this template
-	$extras = "";
-	// exemplo:
-	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
+	//$extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
 	
-	// Body Class = 
-	$bodyclass = "";
-	// exemplo:
-	// $bodyclass = "text-center";
-
 	// Conexão 
 	require_once 'db_connect.php';
 
@@ -81,9 +74,12 @@
 	endif;
 ?>
 <!-- <html> -->
-<?php include "includes/top.php";?>
+<?php 
+	include "includes/top.php";
+	include "includes/navbar.php";	
+?>
 <!-- <body> -->
-		<h1> Cadastro </h1>
+	<div class="container">
 		<?php
 			// se existir erros, exibe
 			if(!empty($erros)):
@@ -92,24 +88,46 @@
 				endforeach;
 			endif;	
 		?>
-		<hr>
-		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            Nome: <input type="text" name="nome"><br>
-			Login: <input type="text" name="login"><br>
-			Senha: <input type="password" name="senha"><br>
-            Email: <input type="email" name="email"><br>
-            CPF: <input type="float" name="cpf"><br>
-            Data de Nascimento: <input type="date" name="bdate"><br>
-			Telefone: <input type="text" name="telefone"><br>
-            Celular: <input type="text" name="celular"><br>
-            Endereço: <input type="text" name="endereco"><br>
-			Cidade: <input type="text" name="cidade"><br>
-            Estado: <input type="text" name="estado"><br>
 
-
-
-			<button type="submit" name="btn-cadastrar">Cadastrar</button>
+		<table style="width:100%">
+			<form class="form-control-plaintext" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+            <table class="table">
+				<thead>
+					<tr>
+						<div class="text-center">
+							<h1> Cadastro </h1>
+						</div>
+					<tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Nome: <input class="form-text" type="text" name="nome"></td>
+						<td>Login: <input class="form-text" type="text" name="login"></td>
+						<td>CPF: <input class="form-text" type="float" name="cpf"></td>
+					</tr>
+					<tr>
+						<td>Email: <input class="form-text" type="email" name="email"></td>
+						<td>Senha: <input class="form-text" type="password" name="senha"></td>
+						<td>Data de Nascimento: <input class="form-text" type="date" name="bdate"></td>
+					</tr>
+					<tr>
+						<td>Telefone: <input class="form-text" type="text" name="telefone"></td>
+						<td>Endereço: <input class="form-text" type="text" name="endereco"></td>
+						<td>Estado: <input class="form-text" type="text" name="estado"></td>
+					</tr>
+					<tr>
+						<td>Celular: <input class="form-text" type="text" name="celular"></td>
+						<td>Cidade: <input class="form-text" type="text" name="cidade"></td>
+						<td></td>
+					</tr>
+				</tbody>			
+			</table>
+			<div class="text-center">
+			<br><br>
+			<button class="btn btn-lg btn-primary" type="submit" name="btn-entrar">Cadastrar</button>
+			</div>
 		</form>
+	</div>
 <!-- </body> -->
 <?php include "includes/bottom.php";?>
 <!-- </html> -->

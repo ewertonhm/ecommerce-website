@@ -1,24 +1,25 @@
 <?php
-	// Titul da Pagina
+	// Titulo da Pagina
 	$page_title = 'Title';
-
-    // Custom styles para esse template (pode ficar vaziu)
-    $extras = "";
-    // exemplo:
+    
+    // caso necessário adicionar codigos extras ao Header, exemplo:
 	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
+    $extras = "";
 
-    // Body Class (pode ficar vaziu)
-    $bodyclass = "";
-    // exemplo:
+    // caso queira utilizar uma classe diferente no body, exemplo:
     // $bodyclass = "text-center";
+    $bodyclass = "";
 
     // caso a pagina esteja dentro de uma pasta descomentar
 	// $level = "..";
-
+    $level = "";
 ?>
 
 <!-- <html> -->
-<?php include "includes/top.php";?>
+<?php
+    include "includes/top.php";
+    include "includes/navbar.php";
+?>
 <!-- <body> -->
     <!-- CONTEUDO DO BODY AQUI -->
 <!-- </body> -->

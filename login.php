@@ -5,7 +5,7 @@
 	// Custom styles for this template
 	$extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
 
-	// Body Class = 
+	// Body Class =
 	$bodyclass = "text-center";
 
 	// Conexão 

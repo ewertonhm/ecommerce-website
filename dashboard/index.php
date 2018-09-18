@@ -35,7 +35,10 @@
 ?>
 
 <!-- <html> -->
-<?php include "includes/top.php";?>
+<?php 
+	include "../includes/top.php";
+	include "../includes/navbar.php";	
+?>
 <!-- <body> -->
         <?php
             require_once 'usercount.php';
@@ -46,5 +49,5 @@
         <br>
         <a href="logout.php">Logout</a>
 <!-- </body> -->
-<?php include "includes/bottom.php";?>
+<?php include "../includes/bottom.php";?>
 <!-- </html> -->
