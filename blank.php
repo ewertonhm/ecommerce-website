@@ -3,11 +3,11 @@
 	$page_title = 'Title';
 
     // Custom styles for this template
-    $extras = ""
+    $extras = "";
 	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
 
     // Body Class = 
-    $bodyclass = ""
+    $bodyclass = "";
     // $bodyclass = "text-center";
 ?>
 
