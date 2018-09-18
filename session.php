@@ -25,6 +25,8 @@
 		<meta charset="utf-8">
 		<!-- Bootstrap CSS -->
 		<link href="node_modules/bootstrap/compiler/bootstrap.css" rel="stylesheet">
+		<!-- Bootstrap Custom CSS -->
+		<link href="node_modules/bootstrap/compiler/style.css" rel="stylesheet">
 		<!-- Jquery JS -->	
 		<script src="node_modules/jquery/jquery.js"></script>
 		<!-- Popper JS -->

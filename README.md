@@ -27,7 +27,7 @@ Configurações necessárias para funcionar:
 
 Para fazer modificações no CSS, rodar:
 'sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler'
-e alterar no codigo fonte (node_modules/bootstrap/scss)
+e alterar no codigo fonte (node_modules/bootstrap/scss/style.scss)
 o sass irá verificar qualquer alteração e recompilar o css.
 
 

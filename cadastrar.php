@@ -69,18 +69,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<title>Cadastro</title>
-		<meta charset="utf-8">
-   		<!-- Bootstrap CSS -->
-		<link href="node_modules/bootstrap/compiler/bootstrap.css" rel="stylesheet">
-		<!-- Jquery JS -->	
-		<script src="node_modules/jquery/jquery.js"></script>
-		<!-- Popper JS -->
-		<script src="node_modules/popper.js/dist/popper.js"></script>
-		<!-- Bootstrap JS -->
-		<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-	</head>
+	<!-- <head> -->
+	<?php include "includes/head.php";?>
+	<!-- </head> -->
 	<body>
 		<h1> Cadastro </h1>
 		<?php
