@@ -11,6 +11,10 @@
     $bodyclass = "";
     // exemplo:
     // $bodyclass = "text-center";
+
+    // caso a pagina esteja dentro de uma pasta descomentar
+	// $level = "..";
+
 ?>
 
 <!-- <html> -->
