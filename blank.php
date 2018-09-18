@@ -1,13 +1,13 @@
 <?php
-	// Page Title
+	// Titul da Pagina
 	$page_title = 'Title';
 
-    // Custom styles for this template
+    // Custom styles para esse template (pode ficar vaziu)
     $extras = "";
     // exemplo:
 	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
 
-    // Body Class = 
+    // Body Class (pode ficar vaziu)
     $bodyclass = "";
     // exemplo:
     // $bodyclass = "text-center";
