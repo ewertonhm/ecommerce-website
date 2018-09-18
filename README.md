@@ -14,6 +14,17 @@ E-commerce com PHP e PostgreSQL
 
 Configurações necessárias para funcionar:
 
+[Dependencias]
+- PHP@^7
+- PostgreSQL@^10
+- Node.JS@^8.12.0
+- npm@
+- jquery@1.9.3
+- popper.js@^1.14.3
+- bootstrap@4.1.3
+- Ruby (verificar)
+- Sass@^1.0
+
 [PHP]
 - descomentar as extenções:
 	- extension=pdo_pgsql
