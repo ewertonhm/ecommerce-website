@@ -32,7 +32,7 @@
         if(empty($login) or empty($senha) or empty($email) or empty($cpf) or empty($celular) or empty($nome)):  
 			$erros[] = "<li> Todos os campos devem ser preenchidos. </li>";
         else:
-            // verificar se o usuario ja existe (melhorar) ******************************
+            // verificar se o usuario ja existe (melhorar) *****************************
             //$query = "SELECT * FROM usuarios WHERE login = '$login' OR email = '$email' OR cpf = '$cpf'";
             $query = "SELECT * FROM usuarios WHERE login = '$login'";
 			$consulta_usuario = pg_query($dbconn, $query);
