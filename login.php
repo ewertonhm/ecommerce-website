@@ -1,4 +1,13 @@
 <?php
+	// Page Title
+	$page_title = 'Login';
+
+	// Custom styles for this template
+	$extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
+
+	// Body Class = 
+	$bodyclass = "text-center";
+
 	// Conexão 
 	require_once 'db_connect.php';
 
@@ -49,26 +58,10 @@
 		endif;	
 	endif;
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-	<head>
-		<title>Login</title>
-		<meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    	<meta name="description" content="">
-    	<meta name="author" content="Ewerton H Marschalk">
-    	<link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-    	<!-- Custom styles for this template -->
-    	<link href="css/login.css" rel="stylesheet">
-   		<!-- Bootstrapcdn CSS -->
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-		
-		<!-- Bootstrapcdn JS -->
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-
-	</head>
-	<body class="text-center">
+<!-- <html> -->
+<?php include "includes/top.php";?>
+<!-- <body> -->
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 			<div class="text-center mb-4">
 				<img class="mb-4" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -94,5 +87,4 @@
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
       		</div>
 		</form>
-	</body>	
-</html>	
+<?php include "includes/bottom.php";?>

@@ -1,0 +1,24 @@
+{
+  "name": "ecommerce-website",
+  "version": "1.0.0",
+  "description": "Projeto acadêmico do 4º Periodo de Sistemas de informação 2018 - Uniguaçu\r Criado pelos alunos\r - Antonio Augusto Maguelniski\r - Ewerton Henrique Marschalk\r - Lucas Angeli\r - Lucas Camargo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ewertonhm/ecommerce-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ewertonhm/ecommerce-website/issues"
+  },
+  "homepage": "https://github.com/ewertonhm/ecommerce-website#readme",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.14.3"
+  }
+}
