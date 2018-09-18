@@ -1,4 +1,17 @@
 <?php
+	// Page Title
+	$page_title = 'Cadastro';
+
+	// Custom styles for this template
+	$extras = "";
+	// exemplo:
+	// $extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
+	
+	// Body Class = 
+	$bodyclass = "";
+	// exemplo:
+	// $bodyclass = "text-center";
+
 	// Conexão 
 	require_once 'db_connect.php';
 
@@ -67,12 +80,9 @@
 		endif;	
 	endif;
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-	<!-- <head> -->
-	<?php include "includes/head.php";?>
-	<!-- </head> -->
-	<body>
+<!-- <html> -->
+<?php include "includes/top.php";?>
+<!-- <body> -->
 		<h1> Cadastro </h1>
 		<?php
 			// se existir erros, exibe
@@ -100,5 +110,6 @@
 
 			<button type="submit" name="btn-cadastrar">Cadastrar</button>
 		</form>
-	</body>	
-</html>	
+<!-- </body> -->
+<?php include "includes/bottom.php";?>
+<!-- </html> -->
