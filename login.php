@@ -81,4 +81,4 @@
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
       		</div>
 		</form>
-<?php include "includes/bottom.php";?>
+<?php include "includes/bottom-login.php";?>
