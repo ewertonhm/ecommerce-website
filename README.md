@@ -26,10 +26,10 @@ Configurações necessárias para funcionar:
 )
 
 A primeira vez que o projeto for clonado no computador, após instalar as dependências é necessário compilar o tema:
-    - Copie o conteudo da pasta /scss-backup/ para a pasta /node_modules/bootstrap/scss/
+    - Copie o conteudo da pasta /scss/ para a pasta /node_modules/bootstrap/scss/
     - rode o comando 'sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler'
 
-Caso seja feita alguma alteração no tema, salvar os arquivos .scss na pasta scss-backup
+Caso seja feita alguma alteração no tema, salvar os arquivos .scss na pasta /scss/
 pois ao dar git-push a pasta node_modules não é transferida para o repositório
 
 [PHP]
