@@ -1,6 +1,0 @@
-{
-    "php.validate.enable": true,
-    "php.validate.run": "onSave",
-    "php.validate.executablePath": "C:/wamp64/bin/php/php7.2.4/php.exe",
-    "php.suggest.basic":false
-}
