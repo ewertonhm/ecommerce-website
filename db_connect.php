@@ -10,4 +10,5 @@
 	// Conexão com o banco de dados
 	$db_string = "host=$servername port=$port dbname=$db_name user=$username password=$password options='--application_name=$appName'";
 	$dbconn = pg_connect($db_string);
+        $GLOBALS['sql'] = pg_connect($db_string);
  ?>

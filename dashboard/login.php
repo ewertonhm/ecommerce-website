@@ -23,14 +23,9 @@
 		if(empty($login) or empty($senha)):
 			$erros[] = "<li> O campo login e senha precias ser preenchido </li>";
 		else:
-			$senha = md5($senha);
-			$query = "SELECT * FROM usuarios WHERE login = '$login' AND senha = '$senha'";
-			$resultado_usuario = pg_query($dbconn, $query);
-			$resultado = pg_fetch_all($resultado_usuario);
-			if($resultado['0']['login'] == $login AND $resultado['0']['senha'] == $senha):    
-                    pg_close($dbconn);
+			if(login($login,$senha)):    
 				    $_SESSION['logado'] = true;
-				    $_SESSION['id_usuario'] = $resultado['0']['id'];
+				    $_SESSION['id_usuario'] = loginGetid($login, $senha);
 				    // remember-me e cookies setup
 				    if(!empty($_POST["remember"])):
 					    setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
@@ -44,13 +39,13 @@
 					    endif;	
                     endif;   	
 				// Alterar futuramente para a pagina do usuario ou pagina home, momentaneamente em uma pagina de testes.
-                if($resultado['0']['role'] != 'ADM'):
+                if(loginGetrole($login, $senha) != 'ADM'):
                     $erros[] = "<li> Acesso negado.</li>";
                 else:
                     header('Location: index.php');
                 endif; 
 			else:
-				$erros[] = "<li> Usuário ou senha incorreto</li>";
+				$erros[] = "<li> Usuário ou senha incorretos</li>";
 			endif;	
 		endif;	
 	endif;
