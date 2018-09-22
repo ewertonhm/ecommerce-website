@@ -1,2 +1,9 @@
 /nbproject/
 /.vscode/
+/node_modules/jquery/
+/node_modules/popper.js/
+/node_modules/bootstrap/dist
+/node_modules/bootstrap/js
+/node_modules/bootstrap/LICENSE
+/node_modules/bootstrap/package.json
+/node_modules/bootstrap/README.md
