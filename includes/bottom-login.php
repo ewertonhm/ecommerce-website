@@ -1,7 +1,5 @@
 <?php 
     echo "</body>";
-    include "footer.php";
-        
     echo "
     <!-- Jquery JS -->	
     <script src='node_modules/jquery/dist/jquery.min.js'></script>

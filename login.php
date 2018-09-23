@@ -2,12 +2,6 @@
 	// Page Title
 	$page_title = 'Login';
 
-	// Custom styles for this template
-	$extras = "<link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>";
-
-	// Body Class = 
-	$bodyclass = "text-center";
-
 	// Conexão 
 	require_once 'db_connect.php';
 
@@ -29,14 +23,9 @@
 		if(empty($login) or empty($senha)):
 			$erros[] = "<li> O campo login e senha precias ser preenchido </li>";
 		else:
-			$senha = md5($senha);
-			$query = "SELECT * FROM usuarios WHERE login = '$login' AND senha = '$senha'";
-			$resultado_usuario = pg_query($dbconn, $query);
-			$resultado = pg_fetch_all($resultado_usuario);
-			if($resultado['0']['login'] == $login AND $resultado['0']['senha'] == $senha):
-				pg_close($dbconn);
+			if(login($login,$senha)):
 				$_SESSION['logado'] = true;
-				$_SESSION['id_usuario'] = $resultado['0']['id'];
+				$_SESSION['id_usuario'] = loginGetid($login, $senha);
 				// remember-me e cookies setup
 				if(!empty($_POST["remember"])):
 					setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
@@ -53,18 +42,18 @@
 				header('Location: session.php');
 
 			else:
-				$erros[] = "<li> Usuário ou senha incorreto</li>";
+				$erros[] = "<li> Usuário ou senha incorretos</li>";
 			endif;	
 		endif;	
 	endif;
 ?>
 
 <!-- <html> -->
-<?php include "includes/top.php";?>
+<?php include "includes/top-login.php";?>
 <!-- <body> -->
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 			<div class="text-center mb-4">
-				<img class="mb-4" src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+				<img class="mb-4" src="https://png.icons8.com/nolan/96/000000/musical-notes.png" alt="" width="72" height="72">
 				<h1 class="h3 mb-3 font-weight-normal">Entrar na sua conta</h1>
 				<?php
 					// se existir erros, exibe
@@ -87,4 +76,4 @@
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
       		</div>
 		</form>
-<?php include "includes/bottom.php";?>
+<?php include "includes/bottom-login.php";?>

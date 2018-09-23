@@ -25,11 +25,12 @@ Configurações necessárias para funcionar:
 	- Sass@^1.0
 )
 
-Para fazer modificações no CSS, rodar:
-'sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler'
-e alterar no codigo fonte (node_modules/bootstrap/scss/style.scss)
-o sass irá verificar qualquer alteração e recompilar o css.
+A primeira vez que o projeto for clonado no computador, após instalar as dependências é necessário compilar o tema:
+    - Copie o conteudo da pasta /scss/ para a pasta /node_modules/bootstrap/scss/
+    - rode o comando 'sass --watch node_modules/bootstrap/scss:node_modules/bootstrap/compiler'
 
+Caso seja feita alguma alteração no tema, salvar os arquivos .scss na pasta /scss/
+pois ao dar git-push a pasta node_modules não é transferida para o repositório
 
 [PHP]
 - descomentar as extenções:

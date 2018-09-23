@@ -10,9 +10,10 @@
 		<meta name='author' content='Ewerton H Marschalk'>
 		<link rel='icon' href='https://png.icons8.com/nolan/50/000000/musical-notes.png'>
 		<!-- Bootstrap CSS -->
-		<link href='node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
+		<link href='../node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
 		<!-- Bootstrap Custom CSS -->
-		<link href='node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+		<link href='../node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+		<link href='../node_modules/bootstrap/compiler/login.css' rel='stylesheet'>
 	</head>
-	<body>";
+	<body class='text-center'>";
 ?>
