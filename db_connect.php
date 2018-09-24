@@ -1,8 +1,8 @@
 <?php 
 	// Variaveis de conexão
-	$servername = "localhost";
+	$servername = "35.202.123.83";
 	$username = "postgres";
-	$password = "postgres";
+	$password = "k#c+wiv@";
 	$db_name = "database";
 	$port = "5432";
 	$appName = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
