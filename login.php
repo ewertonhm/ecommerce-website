@@ -42,9 +42,6 @@
 				header('Location: session.php');
 
 			else:
-				$erros[] = "<li> $login $senha </li>";
-				$senha = md5($senha);
-				$erros[] = "<li> $senha </li>";
 				$erros[] = "<li> Usuário ou senha incorretos</li>";
 			endif;	
 		endif;	
