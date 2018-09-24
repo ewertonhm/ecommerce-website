@@ -72,14 +72,6 @@
 ?>
 <!-- <body> -->
     <div class="container">
-	<?php
-            // se existir erros, exibe
-            if(!empty($erros)):
-                foreach ($erros as $erro):
-                    echo $erro;
-                endforeach;
-            endif;	
-	?>
             <form class="form-control-plaintext" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <table class="table">
                     <thead>
@@ -113,8 +105,16 @@
                     </tbody>			
 		</table>
                 <div class="text-center">
+                    <?php
+                        // se existir erros, exibe
+                        if(!empty($erros)):
+                            foreach ($erros as $erro):
+                                echo $erro;
+                            endforeach;
+                        endif;	
+	                ?>
                     <br><br>
-                    <button class="btn btn-lg btn-primary" type="submit" name="btn-entrar">Cadastrar</button>
+                    <button class="btn btn-lg btn-primary" type="submit" name="btn-cadastrar">Cadastrar</button>
                 </div>
             </form>  
     </div>
