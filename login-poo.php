@@ -1,15 +1,18 @@
 <?php
-	// Titul da Pagina
-	$page_title = 'Dashboard Login';
+	// Page Title
+	$page_title = 'Login';
 
 	// Conexão 
-	require_once '..\db_connect.php';
-
+	require_once 'classes/db_conection.php';
+        $db = new db_conection;
+        echo $db->getConection();
+        $dbconn = pg_connect("$db->getConection()");
+        
 	// Sessão
 	session_start();
 
 	// Include
-	include '..\functions.php';
+	include "functions.php";
 
 	// Verificar se o botão ja foi clicado
 	if(isset($_POST['btn-entrar'])):
@@ -23,40 +26,43 @@
 		if(empty($login) or empty($senha)):
 			$erros[] = "<li> O campo login e senha precias ser preenchido </li>";
 		else:
-			if(login($login,$senha)):    
-				    $_SESSION['logado'] = true;
-				    $_SESSION['id_usuario'] = loginGetid($login, $senha);
-				    // remember-me e cookies setup
-				    if(!empty($_POST["remember"])):
-					    setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
-					    setcookie ("senha",$_POST["senha"],time()+ (10 * 365 * 24 * 60 * 60));
-				    else:
-					    if(isset($_COOKIE["login"])):
-						    setcookie ("login","");
-					    endif;
-					    if(isset($_COOKIE["senha"])):
-						    setcookie ("senha","");	
-					    endif;	
-                    endif;   	
+			$senha = md5($senha);
+			$query = "SELECT * FROM usuarios WHERE login = '$login' AND senha = '$senha'";
+			$resultado_usuario = pg_query($dbconn, $query);
+			$resultado = pg_fetch_all($resultado_usuario);
+			if($resultado['0']['login'] == $login AND $resultado['0']['senha'] == $senha):
+				pg_close($dbconn);
+				$_SESSION['logado'] = true;
+				$_SESSION['id_usuario'] = $resultado['0']['id'];
+				// remember-me e cookies setup
+				if(!empty($_POST["remember"])):
+					setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
+					setcookie ("senha",$_POST["senha"],time()+ (10 * 365 * 24 * 60 * 60));
+				else:
+					if(isset($_COOKIE["login"])):
+						setcookie ("login","");
+					endif;
+					if(isset($_COOKIE["senha"])):
+						setcookie ("senha","");	
+					endif;	
+				endif;	
 				// Alterar futuramente para a pagina do usuario ou pagina home, momentaneamente em uma pagina de testes.
-                if(loginGetrole($login, $senha) != 'ADM'):
-                    $erros[] = "<li> Acesso negado.</li>";
-                else:
-                    header('Location: index.php');
-                endif; 
+				header('Location: session.php');
+
 			else:
-				$erros[] = "<li> Usuário ou senha incorretos</li>";
+				$erros[] = "<li> Usuário ou senha incorreto</li>";
 			endif;	
 		endif;	
 	endif;
 ?>
+
 <!-- <html> -->
-<?php include "../includes/top-login-dashboard.php";?>
+<?php include "includes/top-login.php";?>
 <!-- <body> -->
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 			<div class="text-center mb-4">
 				<img class="mb-4" src="https://png.icons8.com/nolan/96/000000/musical-notes.png" alt="" width="72" height="72">
-				<h1 class="h3 mb-3 font-weight-normal">Painel de Controle</h1>
+				<h1 class="h3 mb-3 font-weight-normal">Entrar na sua conta</h1>
 				<?php
 					// se existir erros, exibe
 					if(!empty($erros)):
@@ -78,4 +84,4 @@
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
       		</div>
 		</form>
-<?php include "../includes/bottom-dashboard-login.php";?>
+<?php include "includes/bottom-login.php";?>
