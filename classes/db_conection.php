@@ -2,76 +2,67 @@
 
 
 class db_conection {
-    private $servername;
-    private $username;
-    private $password;
-    private $db_name;
-    private $port;
-    private $appName;
-    private $conectado;
-    public $conection;
-    
+    public $servername;
+    public $username;
+    public $password;
+    public $db_name;
+    public $port;
+
     //Setters
-    private function setServername($servername){
+    public function setServername($servername){
         $this->servername = $servername;
     }
-    private function setUsername($username){
+    public function setUsername($username){
         $this->username = $username;
     }
-    private function setPassword($password){
+    public function setPassword($password){
         $this->password = $password;
     }
-    private function setdbName($dbname){
+    public function setdbName($dbname){
         $this->db_name = $dbname;
     }
-    private function setPort($port){
+    public function setPort($port){
         $this->port = $port;
     }
-    private function setAppname($name){
-        $this->appName = $name;
-    }
-    private function setConectado($status){
-        $this->conectado = $status;
-    }
-    private function setConection($conection){
-        $this->conection = $conection;
-    }
-    
+
+        
     // Getters
-    private function getServername(){
+    public function getServername(){
         return $this->servername;
     }
-    private function getUsername(){
+    public function getUsername(){
         return $this->username;
     }
-    private function getPassword(){
+    public function getPassword(){
         return $this->password;
     }
-    private function getdbName(){
+    public function getdbName(){
         return $this->db_name;
     }
-    private function getPort(){
+    public function getPort(){
         return $this->port;
     }
-    private function getappName(){
-        return $this->appName;
-    }
-    private function getConectado(){
-        return $this->conectado;
-    }
-    public function getConection(){
-        return $this->conection;
-    }
-    
-    
+
     public function __construct(){
-        $this->setServername("localhost");
+        $this->setServername("35.202.123.83");
         $this->setUsername("postgres");
-        $this->setPassword("postgres");
+        $this->setPassword("k#c+wiv@");
         $this->setdbName("database");
         $this->setPort("5432");
-        $this->setAppname($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-        $this->setConection("$this->servername $this->port $this->db_name $this->username $this->password options='--application_name=$this->appName");
     }
+    
+    public function connect(){
+        try {
+            $dsn = "pgsql:host=.$this->getServername().;port=.$this->getPort().;dbname=.$this->getdbName().;user=.$this->getUsername().;password=.$this->getPassword";
+            echo $dsn;
+            $pdo = new PDO($dsn);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        } catch (PDOException $e) {
+            echo "Conection Failed: ".$e->getMessage();
+        }
+
+    }
+    
     
 }

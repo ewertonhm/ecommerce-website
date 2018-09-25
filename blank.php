@@ -1,6 +1,11 @@
 <?php
 	// Titulo da Pagina
 	$page_title = 'Title';
+        
+        include "classes/db_conection.php";
+        $db = new db_conection();
+        echo $db->getServername();
+        $db->connect();
 ?>
 
 <!-- <html> -->
