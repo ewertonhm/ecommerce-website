@@ -36,7 +36,7 @@ CREATE TABLE album(
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     ano INT,
-    capa BYTEA,
+    capa TEXT,
     cod_artista INT REFERENCES artista(id),
     cod_genero INT REFERENCES genero(id)
 );
