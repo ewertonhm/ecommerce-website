@@ -71,5 +71,9 @@ class usuario {
         $this->setRole('cliente');
     }
     
+    public function admin() {
+        $this->setRole('ADM');
+    }
+    
            
 }
