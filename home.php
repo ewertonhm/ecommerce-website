@@ -6,7 +6,7 @@
 <!-- <html> -->
 <?php
     include "includes/top.php";
-    include "includes/navbar.php";
+    require_once "includes/navbar.php";
 ?>
 <!-- <body> -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

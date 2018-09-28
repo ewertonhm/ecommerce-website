@@ -21,6 +21,63 @@ CREATE TABLE dadosUsuarios(
     cod_usuario INT REFERENCES usuarios(id)
 );
 
+CREATE TABLE genero(
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE artista(
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE album(
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    ano INT,
+    capa TEXT,
+    cod_artista INT REFERENCES artista(id),
+    cod_genero INT REFERENCES genero(id)
+);
+
+CREATE TABLE faixa(
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    posicao INT,
+    duracao VARCHAR(25),
+    cod_album INT REFERENCES album(id)
+);
+
+CREATE TABLE midia(
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE produto(
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cod_album INT REFERENCES album(id),
+    cod_midia INT REFERENCES midia(id),
+    preco INT,
+    qtd_estoque INT
+);
+
+CREATE TABLE compra (
+	id SERIAL PRIMARY KEY,
+	cod_usuaro INT NOT NULL REFERENCES usuarios(id),
+	data_compra DATETIME DEFAULT (CURRENT_TIMESTAMP)
+);
+
+CREATE TABLE item_compra(
+	cod_produto INT NOT NULL REFERENCES produto(id),
+	cod_compra INT NOT NULL REFERENCES compra(id),
+	qntd INT NOT NULL,
+	valor FLOAT NOT NULL,
+	CONSTRAINT pk_item PRIMARY KEY (cod_produto,cod_compra)
+);
+
 INSERT INTO usuarios (nome, login, senha, email, role) 
 VALUES ('Administrador', 'admin', MD5('123456'), 'admin@local.com', 'ADM');
 

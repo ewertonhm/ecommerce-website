@@ -44,4 +44,17 @@
                 return false;
             endif;
         }
+        function loginGetroleByid($id){
+            $consultasql = sqltoarray("SELECT * FROM usuarios WHERE id = '$id'");
+            if($consultasql['0']['id'] == $id):
+                return $consultasql['0']['role'];
+            else:
+                return false;
+            endif;
+        }
+        
+        function getNomebySessionID(){
+                $query = sqltoarray("SELECT * FROM usuarios WHERE id = '".$_SESSION['id_usuario']."'");
+                return $query['0']['nome'];
+        }
 ?>
