@@ -64,6 +64,19 @@ CREATE TABLE produto(
     qtd_estoque INT
 );
 
+CREATE TABLE compra (
+	id SERIAL PRIMARY KEY,
+	cod_usuaro INT NOT NULL REFERENCES usuarios(id),
+	data_compra DATETIME DEFAULT (CURRENT_TIMESTAMP)
+);
+
+CREATE TABLE item_compra(
+	cod_produto INT NOT NULL REFERENCES produto(id),
+	cod_compra INT NOT NULL REFERENCES compra(id),
+	qntd INT NOT NULL,
+	valor FLOAT NOT NULL,
+	CONSTRAINT pk_item PRIMARY KEY (cod_produto,cod_compra)
+);
 
 INSERT INTO usuarios (nome, login, senha, email, role) 
 VALUES ('Administrador', 'admin', MD5('123456'), 'admin@local.com', 'ADM');
