@@ -2,16 +2,15 @@ CREATE DATABASE database;
 CREATE TABLE usuarios(
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
+    cpf VARCHAR(14),
     login VARCHAR(255) NOT NULL,
     senha VARCHAR(32) NOT NULL,
     email VARCHAR(255) NOT NULL,
     role VARCHAR(32) NOT NULL
 );
 
-CREATE TABLE dadosUsuarios(
+CREATE TABLE clientes(
     id SERIAL PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    cpf VARCHAR(255) NOT NULL,
     datadenasc DATE,
     telefone VARCHAR(15),
     celular VARCHAR(15),
