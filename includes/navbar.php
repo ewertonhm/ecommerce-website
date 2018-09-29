@@ -1,35 +1,58 @@
 <?php
-// variaveis navbar
-    // Nome da Pagina
-    $pagetitle = "Puro Som";
-    // link ao clicar no nome da pagina
-    $pagetitlelink = $_SERVER['PHP_SELF'];
-    // Texto Menu 1
-    $textomenu1 = "Pagina Inicial";
-    // Link Menu 1
-    $linkmenu1 ="home.php";
-    // Texto Menu 2
-    $textomenu2 = "Catalogo";
-    // Link Menu 2
-    $linkmenu2 = "#";
-    // Texto Menu 3
-    $textomenu3 = "Promoções";
-    // Link Menu 3
-    $linkmenu3 = "#";
-    // Texto Dropdown (futuramente exibir o nome do usuario logado ou Logar-se nesse campo)
-    $dropdownname = "Area do Usuario";
-    // Texto Dropdown Menu 1
-    $textdropdown1 = "Cadastrar";
-    // Link Dropdown Menu 1
-    $linkdropdown1 = "cadastrar.php";
-    // Texto Dropdown Menu 2
-    $textdropdown2 = "Entrar";
-    // Link Dropdown Menu 2
-    $linkdropdown2 = "login.php";
-    // Texto Dropdown Menu 3
-    $textdropdown3 = "Sair";
-    // Link Dropdown Menu 3
-    $linkdropdown3 = "logout.php";
+    // iniciar sessão
+    session_start();
+    
+    // Conexão
+    require_once 'db_connect.php';
+    
+    // variaveis navbar
+        // Nome da Pagina
+        $pagetitle = "Puro Som";
+        // link ao clicar no nome da pagina
+        $pagetitlelink = $_SERVER['PHP_SELF'];
+        // Texto Menu 1
+        $textomenu1 = "Pagina Inicial";
+        // Link Menu 1
+        $linkmenu1 ="home.php";
+        // Texto Menu 2
+        $textomenu2 = "Catalogo";
+        // Link Menu 2
+        $linkmenu2 = "#";
+        // Texto Menu 3
+        $textomenu3 = "Promoções";
+        // Link Menu 3
+        $linkmenu3 = "#";
+        // Texto Dropdown (futuramente exibir o nome do usuario logado ou Logar-se nesse campo)
+        if(isset($_SESSION['logado'])):
+            require_once 'functions.php';
+                $dropdownname = getNomebySessionID();
+                // Texto Dropdown Menu 1
+                $textdropdown1 = "Minha Conta";
+                // Link Dropdown Menu 1
+                $linkdropdown1 = "session.php";
+                // Texto Dropdown Menu 2
+                $textdropdown2 = "Meus Pedidos";
+                // Link Dropdown Menu 2
+                $linkdropdown2 = "pedidos.php";
+                // Texto Dropdown Menu 3
+                $textdropdown3 = "Sair";
+                // Link Dropdown Menu 3
+                $linkdropdown3 = "logout.php";
+        else:        	
+        $dropdownname = "Area do Usuario";
+        // Texto Dropdown Menu 1
+        $textdropdown1 = "Cadastrar";
+        // Link Dropdown Menu 1
+        $linkdropdown1 = "cadastrar.php";
+        // Texto Dropdown Menu 2
+        $textdropdown2 = "Entrar";
+        // Link Dropdown Menu 2
+        $linkdropdown2 = "login.php";
+        // Texto Dropdown Menu 3
+        $textdropdown3 = "Sair";
+        // Link Dropdown Menu 3
+        $linkdropdown3 = "logout.php";
+        endif;
 echo "
 <nav class='navbar navbar-expand-lg navbar-light bg-light'>
     <div class ='container'>
