@@ -18,7 +18,7 @@ class Midia{
 	}
 
 	public function setId($id){
-		$this->setId
+		$this->id = $id;
 	}
 
 	public function getQtd(){

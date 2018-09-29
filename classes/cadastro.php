@@ -22,7 +22,7 @@ if(isset($_POST['btn'])) {
 	$insert=pg_query("insert into clientes (nome, cpf, email, endereco, cidade, uf)
 						values('$nome', '$cpf', '$email', '$endereco', '$cidade', '$uf')
 						");
-	elseif (!@$inserir) {
+	if (!@$insert) {
 		echo "Erro ao salvar os dados";
 	}
 }
