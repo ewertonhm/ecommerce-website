@@ -56,15 +56,26 @@
             else:
                 // insere os dados no banco
 			    $usuario->setSenha(md5($usuario->getSenha()));
-			    $query = "INSERT INTO usuarios (nome, login, senha, email, role) 
-                            VALUES ('".$usuario->getNome()."','".$usuario->getLogin()."','".$usuario->getSenha()."','".$usuario->getEmail()."','".$usuario->getRole()."');";
+			    $query = 
+                                    "INSERT INTO usuarios (
+                                        nome,
+                                        cpf,
+                                        login,
+                                        senha,
+                                        email,
+                                        role
+                                        ) VALUES ('"
+                                            .$usuario->getNome()."','"
+                                            .$usuario->getCpf()."','"
+                                            .$usuario->getLogin()."','"
+                                            .$usuario->getSenha()."','"
+                                            .$usuario->getEmail()."','"
+                                            .$usuario->getRole()."');";
 			    if(pg_query($dbconn, $query)):
 					$resultado = sqltoarray("SELECT * FROM usuarios WHERE login = '".$usuario->getLogin()."'");
 					$usuario->setId($resultado['0']['id']);
 					$query = 
-                                        "INSERT INTO dadosusuarios(
-                                            nome,
-                                            cpf,
+                                        "INSERT INTO clientes(
                                             datadenasc,
                                             telefone,
                                             celular,
@@ -73,8 +84,6 @@
                                             estado,
                                             cod_usuario
                                             ) VALUES ('"
-                                                    .$usuario->getNome()."','"
-                                                    .$usuario->getCpf()."','"
                                                     .$usuario->getDatadenasc()."','"
                                                     .$usuario->getTelefone()."','"
                                                     .$usuario->getCelular()."','"
@@ -102,15 +111,6 @@
 ?>
 <!-- <body> -->
 	<div class="container">
-		<?php
-			// se existir erros, exibe
-			if(!empty($erros)):
-				foreach ($erros as $erro):
-					echo $erro;
-				endforeach;
-			endif;	
-		?>
-
 		<table style="width:100%">
 			<form class="form-control-plaintext" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <table class="table">
@@ -146,6 +146,15 @@
 			</table>
 			<div class="text-center">
 			<br><br>
+                        <?php
+			// se existir erros, exibe
+			if(!empty($erros)):
+				foreach ($erros as $erro):
+					echo $erro."<br>";
+                                        
+				endforeach;
+			endif;	
+                        ?>
 			<button class="btn btn-lg btn-primary" type="submit" name="btn-cadastrar">Cadastrar</button>
 			</div>
 		</form>
