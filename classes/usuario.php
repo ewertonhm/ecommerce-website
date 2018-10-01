@@ -1,24 +1,32 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of usuario
  *
  * @author Ewerton
  */
-class usuario {
+
+require_once 'cliente.php';
+
+class usuario extends cliente{
     private $id;
     private $nome;
+    private $cpf;
     private $login;
     private $senha;
     private $email;
     private $role;
     
+    
+    function getCpf() {
+        return $this->cpf;
+    }
+
+    function setCpf($cpf) {
+        $this->cpf = $cpf;
+    }
+
     function getId() {
         return $this->id;
     }

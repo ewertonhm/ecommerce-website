@@ -14,7 +14,6 @@
         
         // Classes
         require_once 'classes/usuario.php';
-        require_once 'classes/dadosUsuarios.php';
 
 	// Verificar se o botão ja foi clicado
 	if(isset($_POST['btn-cadastrar'])):
@@ -24,25 +23,25 @@
         
                 // Estancia os objetos
                 $usuario = new usuario();
-                $dadosUsuario = new dadosUsuarios();
+                
                 
                 $usuario->setNome(cleanstring($_POST['nome']));
                 $usuario->setLogin(cleanstring($_POST['login']));
                 $usuario->setSenha(cleanstring($_POST['senha']));
                 $usuario->setEmail(cleanstring($_POST['email']));
-                $dadosUsuario->setCpf(cleanstring($_POST['cpf']));
-                $dadosUsuario->setDatadenasc(cleanstring($_POST['bdate']));
-                $dadosUsuario->setTelefone(cleanstring($_POST['telefone']));
-                $dadosUsuario->setCelular(cleanstring($_POST['celular']));
-                $dadosUsuario->setEndereco(cleanstring($_POST['endereco']));
-                $dadosUsuario->setCidade(cleanstring($_POST['cidade']));
-                $dadosUsuario->setEstado(cleanstring($_POST['estado']));
-                $dadosUsuario->setNome($usuario->getNome());
+                $usuario->setCpf(cleanstring($_POST['cpf']));
+                $usuario->setDatadenasc(cleanstring($_POST['bdate']));
+                $usuario->setTelefone(cleanstring($_POST['telefone']));
+                $usuario->setCelular(cleanstring($_POST['celular']));
+                $usuario->setEndereco(cleanstring($_POST['endereco']));
+                $usuario->setCidade(cleanstring($_POST['cidade']));
+                $usuario->setEstado(cleanstring($_POST['estado']));
+                $usuario->setNome($usuario->getNome());
 
 
         //echo $nome.$email.$cpf.$bdate.$celular.$login.$senha;
         // verifica se as variaveis (campos) estão vazias
-        if(empty($usuario->getLogin()) or empty($usuario->getSenha()) or empty($usuario->getEmail()) or empty($dadosUsuario->getCpf()) or empty($dadosUsuario->getCelular()) or empty($dadosUsuario->getNome())):  
+        if(empty($usuario->getLogin()) or empty($usuario->getSenha()) or empty($usuario->getEmail()) or empty($usuario->getCpf()) or empty($usuario->getCelular()) or empty($usuario->getNome())):  
 			$erros[] = "<li> Todos os campos devem ser preenchidos. </li>";
         else:
             // verificar se o usuario ja existe (melhorar) *****************************
@@ -52,7 +51,7 @@
 				$erros[] = "<li> Login já cadastrado. </li>";
 			elseif($resultado['0']['email'] == $usuario->getEmail()):
 				$erros[] = "<li> Email já cadastrado. </li>";
-			elseif($resultado['0']['cpf'] == $dadosUsuario->getCpf()):
+			elseif($resultado['0']['cpf'] == $usuario->getCpf()):
 				$erros[] = "<li> CPF já cadastrado. </li>";
             else:
                 // insere os dados no banco
@@ -61,10 +60,30 @@
                             VALUES ('".$usuario->getNome()."','".$usuario->getLogin()."','".$usuario->getSenha()."','".$usuario->getEmail()."','".$usuario->getRole()."');";
 			    if(pg_query($dbconn, $query)):
 					$resultado = sqltoarray("SELECT * FROM usuarios WHERE login = '".$usuario->getLogin()."'");
-					$dadosUsuario->setId($resultado['0']['id']);
-					$query = "INSERT INTO dadosUsuarios(nome, cpf, datadenasc, telefone, celular, endereco, cidade, estado, cod_usuario)
-					VALUES ('".$dadosUsuario->getNome()."', '".$dadosUsuario->getCpf()."','".$dadosUsuario->getDatadenasc()."', '".$dadosUsuario->getTelefone()."','".$dadosUsuario->getCelular()."','".$dadosUsuario->getEndereco()."','".$dadosUsuario->getCidade()."','".$dadosUsuario->getEndereco()."','".$dadosUsuario->getId()."')";
-					if(pg_query($dbconn, $query)):		
+					$usuario->setId($resultado['0']['id']);
+					$query = 
+                                        "INSERT INTO dadosusuarios(
+                                            nome,
+                                            cpf,
+                                            datadenasc,
+                                            telefone,
+                                            celular,
+                                            endereco,
+                                            cidade,
+                                            estado,
+                                            cod_usuario
+                                            ) VALUES ('"
+                                                    .$usuario->getNome()."','"
+                                                    .$usuario->getCpf()."','"
+                                                    .$usuario->getDatadenasc()."','"
+                                                    .$usuario->getTelefone()."','"
+                                                    .$usuario->getCelular()."','"
+                                                    .$usuario->getEndereco()."','"
+                                                    .$usuario->getCidade()."','"
+                                                    .$usuario->getEstado()."','"
+                                                    .$usuario->getId()."')";
+                                        
+					if(pg_query($dbconn, $query)):	
 						$erros[] = "<li> Cadastro realizado com sucesso.</li>";
 					else:
 						$erros[] = "<li> Erro inesperado [COD=223]. </li>";

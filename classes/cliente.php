@@ -1,10 +1,93 @@
 <?php
 
-require_once "pessoa.php";
+/**
+ * Description of cliente
+ *
+ * @author Ewerton
+ */
+class cliente {
+    private $id;
+    private $datadenasc;
+    private $telefone;
+    private $celular;
+    private $endereco;
+    private $cidade;
+    private $estado;
+    private $cod_usuario;
+    
+    function getId() {
+        return $this->id;
+    }
 
-class Cliente extends Pessoa {
+    function getDatadenasc() {
+        return $this->datadenasc;
+    }
 
-	public function adicionar($itens, $qtd){
+    function getTelefone() {
+        return $this->telefone;
+    }
+
+    function getCelular() {
+        return $this->celular;
+    }
+
+    function getEndereco() {
+        return $this->endereco;
+    }
+
+    function getCidade() {
+        return $this->cidade;
+    }
+
+    function getEstado() {
+        return $this->estado;
+    }
+
+    function getCod_usuario() {
+        return $this->cod_usuario;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setDatadenasc($datadenasc) {
+        $this->datadenasc = $datadenasc;
+    }
+
+    function setTelefone($telefone) {
+        $this->telefone = $telefone;
+    }
+
+    function setCelular($celular) {
+        $this->celular = $celular;
+    }
+
+    function setEndereco($endereco) {
+        $this->endereco = $endereco;
+    }
+
+    function setCidade($cidade) {
+        $this->cidade = $cidade;
+    }
+
+    function setEstado($estado) {
+        $this->estado = $estado;
+    }
+
+    function setCod_usuario($cod_usuario) {
+        $this->cod_usuario = $cod_usuario;
+    }
+    function getCpf() {
+        return $this->cpf;
+    }
+
+    function setCpf($cpf) {
+        $this->cpf = $cpf;
+    }
+
+        // funções criadas pelo lucas Angeli
+    	public function adicionar($itens, $qtd){
 		//os produtos da loja devem ter uma quantidade
 		//tem que ter um if pra ver se o cliente nao esta adicionando mais do que esta disponivel
 	}
@@ -27,33 +110,6 @@ class Cliente extends Pessoa {
 		//multiplica itens*qtd
 		//é a função que vai gerar a conta para o cliente
 	}
-
-	public function Cliente($nome, $cpf, $email, $endereco, $cidade, $uf){
-    $this->setNome($nome);
-    $this->setCpf($cpf);
-    $this->setEmail($email);
-    $this->setEndereco($endereco);
-    $this->setCidade($cidade);
-    $this->setUf($uf);   
-  }
+    
+           
 }
-
-/*
-$cliente3 = new Cliente("Tonho", "24242424", "tonho@tonho.com", "Rua dos Bandeirantes", "Uniao da vitoria", "PR");
-echo "O nome do cliente eh: " . $cliente3->getNome();
-echo "<br>CPF: " . $cliente3->getCPF();
-echo "<br>Email: " . $cliente3->getEmail();
-echo "<br>Endereço: " . $cliente3->getEndereco();
-echo "<br>Cidade: " . $cliente3->getCidade();
-echo "<br>Estado: " . $cliente3->getUf();
-*/
-
-//fazer metodo construtor para gerar novos clientes
-
-//$cliente1->setNome("Emanuel");
-//echo "O nome do cliente eh: {$cliente1->getNome()}";
-
-?>
-
-
-	
