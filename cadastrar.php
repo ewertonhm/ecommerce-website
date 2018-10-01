@@ -6,9 +6,11 @@
 	// Conexão 
 	require_once 'db_connect.php';
 
-	// Sessão
-	session_start();
-
+	// iniciar sessão
+        if(!isset($_SESSION)):
+            session_start();
+        endif;
+    
 	// Include
 	include "functions.php";
         

@@ -1,6 +1,8 @@
 <?php
     // iniciar sessão
-    session_start();
+   if(!isset($_SESSION)):
+        session_start();
+    endif;
     
     // Conexão
     require_once 'db_connect.php';
@@ -9,7 +11,7 @@
         // Nome da Pagina
         $pagetitle = "Puro Som";
         // link ao clicar no nome da pagina
-        $pagetitlelink = $_SERVER['PHP_SELF'];
+        $pagetitlelink = $_SERVER['PHP_SELF'];  
         // Texto Menu 1
         $textomenu1 = "Pagina Inicial";
         // Link Menu 1
