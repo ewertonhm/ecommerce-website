@@ -60,7 +60,7 @@ CREATE TABLE produto(
     nome VARCHAR(255) NOT NULL,
     cod_album INT REFERENCES album(id),
     cod_midia INT REFERENCES midia(id),
-    preco INT,
+    preco FLOAT,
     qtd_estoque INT
 );
 
@@ -146,3 +146,9 @@ INSERT INTO "album" (nome, ano, capa, cod_artista, cod_genero) VALUES
 ('The Dark Side of the Moon',1973,'ADICIONAR',12,13),
 ('Hot Fuss',2004,'ADICIONAR',13,1);
 
+INSERT INTO "produto" (nome,cod_album,cod_midia,preco,qtd_estoque) VALUES
+('CD Queen - At the Beep',1,3,19.99,10),
+('K7 Queen - At the Beep',1,2,15.99,8),
+('DVD Pink Floyd - The Dark Side of the Moon',9,4,29.99,14),
+('LP Pink Floyd - The Dark Side of the Moon',9,1,49.99,3),
+('CD Red Hot Chilli Peppers - Californication',4,3,19.99,22);
