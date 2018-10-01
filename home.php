@@ -79,7 +79,7 @@
                                                     <p class='price'>Valor unitário: R$".$produto->getPreco()."</p>
                                                 </div>
                                                 <div class='mb-3 mt-0'>
-                                                    <button type='button' class='btn btn-sm btn-success btn-dark' data-togle='modal' data-target='#details-1'>
+                                                    <button type='button' class='btn btn-sm btn-success btn-dark' data-togle='modal' data-target='#details-1' id='".$produto->getId()."'>
                                                         Mais Informações
                                                     </button>
                                                 </div>
