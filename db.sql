@@ -153,8 +153,9 @@ INSERT INTO "produto" (nome,cod_album,cod_midia,preco,qtd_estoque) VALUES
 ('LP Pink Floyd - The Dark Side of the Moon',9,1,49.99,3),
 ('CD Red Hot Chilli Peppers - Californication',4,3,19.99,22);
 
-SELECT midia.sigla AS midia,artista.nome AS artista,album.nome AS album,genero.nome AS genero,produto.preco,produto.qtd_estoque FROM produto 
+SELECT produto.id,produto.nome AS nome, midia.sigla AS midia,artista.nome AS artista,album.nome AS album,genero.nome AS genero,produto.preco AS preco,produto.qtd_estoque FROM produto 
 INNER JOIN album ON produto.cod_album = album.id
 INNER JOIN midia ON produto.cod_midia = midia.id
 INNER JOIN artista ON album.cod_artista = artista.id
-INNER JOIN genero ON album.cod_genero = genero.id;
+INNER JOIN genero ON album.cod_genero = genero.id
+WHERE produto.qtd_estoque > 0;
