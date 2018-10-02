@@ -18,6 +18,8 @@ class DB {
     private function __construct() {
         try{
             //$this->_pdo = new PDO('database:host;dname=','user','password');
+            //$conn = new PDO("pgsql:host=$this->host port=$this->port dbname=$this->dbname", "$this->username", "$this->password");
+            //echo "PDO connection object created";
             $this->_pdo = new PDO('mysql:host=127.0.0.1;dname=database','root','');
         } catch (PDOException $e) {
             die($e->getMessage());
