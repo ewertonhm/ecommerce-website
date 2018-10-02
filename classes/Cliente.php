@@ -15,8 +15,63 @@ class Cliente {
     private $cidadeCliente;
     private $ufCliente;
     
-    
+    function getIdCliente() {
+        return $this->idCliente;
+    }
 
+    function getNascCliente() {
+        return $this->nascCliente;
+    }
+
+    function getFoneCliente() {
+        return $this->foneCliente;
+    }
+
+    function getCelCliente() {
+        return $this->celCliente;
+    }
+
+    function getEndCliente() {
+        return $this->endCliente;
+    }
+
+    function getCidadeCliente() {
+        return $this->cidadeCliente;
+    }
+
+    function getUfCliente() {
+        return $this->ufCliente;
+    }
+
+    function setIdCliente($idCliente) {
+        $this->idCliente = $idCliente;
+    }
+
+    function setNascCliente($nascCliente) {
+        $this->nascCliente = $nascCliente;
+    }
+
+    function setFoneCliente($foneCliente) {
+        $this->foneCliente = $foneCliente;
+    }
+
+    function setCelCliente($celCliente) {
+        $this->celCliente = $celCliente;
+    }
+
+    function setEndCliente($endCliente) {
+        $this->endCliente = $endCliente;
+    }
+
+    function setCidadeCliente($cidadeCliente) {
+        $this->cidadeCliente = $cidadeCliente;
+    }
+
+    function setUfCliente($ufCliente) {
+        $this->ufCliente = $ufCliente;
+    }
+
+    
         // funções criadas pelo lucas Angeli
     	public function adicionar($itens, $qtd){
 		//os produtos da loja devem ter uma quantidade

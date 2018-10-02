@@ -10,77 +10,77 @@
 require_once 'cliente.php';
 
 class Usuario extends Cliente{
-    private $id;
-    private $nome;
-    private $cpf;
-    private $login;
-    private $senha;
-    private $email;
-    private $role;
+    private $idUsuario;
+    private $nomeUsuario;
+    private $cpfUsuario;
+    private $loginUsuario;
+    private $senhaUsuario;
+    private $emailUsuario;
+    private $roleUsuario;
     
+    function getIdUsuario() {
+        return $this->idUsuario;
+    }
+
+    function getNomeUsuario() {
+        return $this->nomeUsuario;
+    }
+
+    function getCpfUsuario() {
+        return $this->cpfUsuario;
+    }
+
+    function getLoginUsuario() {
+        return $this->loginUsuario;
+    }
+
+    function getSenhaUsuario() {
+        return $this->senhaUsuario;
+    }
+
+    function getEmailUsuario() {
+        return $this->emailUsuario;
+    }
+
+    function getRoleUsuario() {
+        return $this->roleUsuario;
+    }
+
+    function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
+    }
+
+    function setNomeUsuario($nomeUsuario) {
+        $this->nomeUsuario = $nomeUsuario;
+    }
+
+    function setCpfUsuario($cpfUsuario) {
+        $this->cpfUsuario = $cpfUsuario;
+    }
+
+    function setLoginUsuario($loginUsuario) {
+        $this->loginUsuario = $loginUsuario;
+    }
+
+    function setSenhaUsuario($senhaUsuario) {
+        $this->senhaUsuario = $senhaUsuario;
+    }
+
+    function setEmailUsuario($emailUsuario) {
+        $this->emailUsuario = $emailUsuario;
+    }
+
+    function setRoleUsuario($roleUsuario) {
+        $this->roleUsuario = $roleUsuario;
+    }
+
     
-    function getCpf() {
-        return $this->cpf;
-    }
-
-    function setCpf($cpf) {
-        $this->cpf = $cpf;
-    }
-
-    function getId() {
-        return $this->id;
-    }
-
-    function getNome() {
-        return $this->nome;
-    }
-
-    function getLogin() {
-        return $this->login;
-    }
-
-    function getSenha() {
-        return $this->senha;
-    }
-
-    function getEmail() {
-        return $this->email;
-    }
-
-    function getRole() {
-        return $this->role;
-    }
-
-    function setId($id) {
-        $this->id = $id;
-    }
-
-    function setNome($nome) {
-        $this->nome = $nome;
-    }
-
-    function setLogin($login) {
-        $this->login = $login;
-    }
-
-    function setSenha($senha) {
-        $this->senha = $senha;
-    }
-
-    function setEmail($email) {
-        $this->email = $email;
-    }
-
-    function setRole($role) {
-        $this->role = $role;
-    }
-
     public function __construct() {
-        $this->setRole('cliente');
+        $this->setRoleUsuario('cliente');
     }
     
     public function admin() {
-        $this->setRole('ADM');
+        $this->setRoleUsuario('ADM');
     }
     
            
