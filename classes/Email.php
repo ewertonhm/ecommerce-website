@@ -11,7 +11,7 @@
  *
  * @author Ewerton
  */
-class email {
+class Email {
     public $remetente;
     public $destinatario;
     public $assunto;

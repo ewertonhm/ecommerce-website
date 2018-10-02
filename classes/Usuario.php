@@ -9,7 +9,7 @@
 
 require_once 'cliente.php';
 
-class usuario extends cliente{
+class Usuario extends Cliente{
     private $id;
     private $nome;
     private $cpf;
