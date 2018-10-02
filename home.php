@@ -57,7 +57,7 @@
                         <?php
                         // includes produto
                         require_once 'functions.php';
-                        require_once 'classes/produto.php';
+                        require_once 'classes/Produto.php';
                        
                         
                         $sqlprodutos = sqltoarray(  
@@ -68,18 +68,18 @@
                                 INNER JOIN genero ON album.cod_genero = genero.id
                                 WHERE produto.qtd_estoque > 0;");
                                 foreach ($sqlprodutos as $sql) {
-                                    $produto = new produto();
-                                    $produto->setId($sql['id']);
-                                    $produto->setNome($sql['nome']);
-                                    $produto->setPreco($sql['preco']);
+                                    $produto = new Produto();
+                                    $produto->setIdProduto($sql['id']);
+                                    $produto->setNomeProduto($sql['nome']);
+                                    $produto->setPrecoProduto($sql['preco']);
                                     echo("  <div class='col-md-4'>
-                                                <h5>".$produto->getNome()."</h5>
+                                                <h5>".$produto->getNomeProduto()."</h5>
                                                 <img src='img/products/pfthedarksideofthemoon.jpg' class='img-thumbnail' alt='Dark Side of the Moon' />
                                                 <div class='mb-0 mt-1'>
-                                                    <p class='price'>Valor unitário: R$".$produto->getPreco()."</p>
+                                                    <p class='price'>Valor unitário: R$".$produto->getPrecoProduto()."</p>
                                                 </div>
                                                 <div class='mb-3 mt-0'>
-                                                    <button type='button' class='btn btn-sm btn-success btn-dark' data-togle='modal' data-target='#details-1' id='".$produto->getId()."'>
+                                                    <button type='button' class='btn btn-sm btn-success btn-dark' data-togle='modal' data-target='#details-1' id='".$produto->getIdProduto()."'>
                                                         Mais Informações
                                                     </button>
                                                 </div>
