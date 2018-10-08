@@ -34,34 +34,31 @@
             }
         }   
     }        
-?>
-
-<!-- <html> -->
-<?php topLogin('Login');?>
+    topLogin('Login');?>
 <!-- <body> -->
-    <form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-        <div class="text-center mb-4">
-      	    <img class="mb-4" src="https://png.icons8.com/nolan/96/000000/musical-notes.png" alt="" width="72" height="72">
-	    <h1 class="h3 mb-3 font-weight-normal">Entrar na sua conta</h1>
-	    <?php
-		// se existir erros, exibe
-		if(!empty($erros)):
-               	    foreach ($erros as $erro):
-			echo $erro;
-		    endforeach;
-		endif;	
-	    ?>
-	</div>	
-	<label for="login" class="sr-only">Login</label>
-	<input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
-      	<label for="password" class="sr-only">Senha</label>
-      	<input type="password" id="password" name="senha" class="form-control" placeholder="Senha" required>
-      	<div class="checkbox mb-3">
-            <label>
-          	<input type="checkbox" name="remember" value="remember-me"> Lembrar me
-            </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Entrar</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
-      	</div>
-    </form>
+<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+    <div class="text-center mb-4">
+        <img class="mb-4" src="https://png.icons8.com/nolan/96/000000/musical-notes.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Entrar na sua conta</h1>
+	<?php
+            // se existir erros, exibe
+            if(!empty($erros)):
+                foreach ($erros as $erro):
+                    echo $erro;
+		endforeach;
+            endif;	
+	?>
+    </div>
+    <label for="login" class="sr-only">Login</label>
+    <input type="text" id="login" name="login" class="form-control" placeholder="Login" required autofocus>
+    <label for="password" class="sr-only">Senha</label>
+    <input type="password" id="password" name="senha" class="form-control" placeholder="Senha" required>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="remember" value="remember-me"> Lembrar me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btn-entrar">Entrar</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
+    </div>
+</form>
 <?php bottomLogin();?>
