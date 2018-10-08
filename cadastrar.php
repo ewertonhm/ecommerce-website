@@ -86,19 +86,20 @@
                     </tr>
 		</tbody>			
             </table>
-		<div class="text-center">
-                    <br><br>
-                    <?php
-                        // se existir erros, exibe
-                        if(!empty($erros)):
-                            foreach ($erros as $erro):
-                                echo $erro."<br>";            
-                            endforeach;
-                        endif;	
-                    ?>
-                    <button class="btn btn-lg btn-primary" type="submit" name="btn-cadastrar">Cadastrar</button>
-		</div>
+            <div class="text-center">
+                <br><br>
+                <?php
+                    // se existir erros, exibe
+                    if(!empty($erros)):
+                        foreach ($erros as $erro):
+                            echo $erro."<br>";            
+                        endforeach;
+                    endif;	
+                ?>
+                <button class="btn btn-lg btn-primary" type="submit" name="btn-cadastrar">Cadastrar</button>
+            </div>
 	</form>
+    </table>    
 </div>
 <!-- </body> -->
 <?php bottom();?>
