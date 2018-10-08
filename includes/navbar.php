@@ -4,8 +4,7 @@
         session_start();
     endif;
     
-    // Conexão
-    require_once 'db_connect.php';
+
     
     // variaveis navbar
         // Nome da Pagina

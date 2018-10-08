@@ -8,7 +8,7 @@
     include "includes/top.php";
     require_once "includes/navbar.php";
 ?>
-<!-- <body> -->
+<!-- <carrousel> -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -35,37 +35,74 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<div class="container">
-<p>
-Lorem ipsum ut primis dolor tortor viverra per laoreet proin, etiam laoreet suscipit curabitur maecenas id ut dapibus viverra, et quisque ligula at platea taciti ligula commodo. 
-fusce fames sodales himenaeos pulvinar ut himenaeos id nullam, curae euismod cursus curabitur posuere blandit quisque, vehicula ultrices conubia auctor orci varius per. 
-sodales nisi justo pretium orci eleifend hac nibh, dolor ultricies vitae ultrices proin mi platea duis, elit faucibus praesent himenaeos potenti nullam. 
-feugiat ultricies iaculis metus maecaenas pellentesque id ligula in sed, non erat proin vestibulum habitant urna egestas condimentum non, hendrerit ac hac netus sem phasellus sollicitudin tortor. 
-</p>
-<p>
-Elit eros nibh nulla fringilla tristique neque cursus, ultrices odio ipsum viverra primis sem cubilia leo, nostra duis erat himenaeos nulla rutrum. 
-mauris facilisis non ornare primis class dapibus enim nullam gravida purus ligula sed, primis eget neque sed tellus nulla nam vivamus suscipit mi aenean, ut ligula diam augue cubilia litora etiam risus vivamus duis consequat. 
-fames mollis lacinia porta a aliquam at nunc, nec a sociosqu ut nunc leo gravida leo, tincidunt pellentesque turpis donec bibendum cubilia. 
-urna massa molestie curae imperdiet tincidunt sagittis magna pellentesque nisi, faucibus ultricies duis porta rhoncus tristique consectetur dui placerat vivamus, lacinia sagittis nec nostra pulvinar fermentum eros interdum. 
-</p>
-<p>
-Nisl dui aptent est neque turpis auctor taciti, dui pulvinar donec dapibus sit hendrerit eros senectus, phasellus porttitor imperdiet cubilia lobortis feugiat. 
-primis posuere tellus per posuere condimentum eget dui laoreet etiam, nostra dolor adipiscing porttitor quisque dui cras felis, egestas lacus pharetra suspendisse primis nullam varius leo. 
-donec duis quis nisi volutpat purus interdum accumsan augue sed odio, urna odio gravida tincidunt odio nulla eleifend iaculis hendrerit interdum, vitae donec quisque vitae lobortis primis condimentum rutrum nullam. 
-nunc dui tristique ante tellus ligula eget primis ultrices suscipit odio diam arcu etiam, lacus fusce tortor nisl vestibulum vitae arcu at arcu eleifend venenatis. 
-</p>
-<p>
-Id sodales sem proin ultrices ultricies ac mauris erat tempor feugiat, eu nec dui conubia litora aenean dictumst ante egestas, congue iaculis curabitur consequat enim quisque elit tristique sociosqu. 
-sit at habitant elit praesent sociosqu sodales cursus varius, quam cubilia malesuada turpis ut orci aliquet aenean, primis volutpat amet cubilia tincidunt nam vulputate. 
-id blandit nunc blandit vestibulum donec ultrices habitant, condimentum auctor consequat dictum urna purus ultricies, sem convallis eu ut a ultrices. 
-fringilla est quisque velit aenean nulla class scelerisque, ipsum pellentesque consequat vitae gravida id, elementum laoreet dui a tristique feugiat. 
-</p>
-<p>
-Dui himenaeos nullam ut ullamcorper hendrerit sodales adipiscing hendrerit curabitur, quis accumsan enim fusce et nam quisque bibendum, lacus dapibus aptent quis curae molestie sapien pellentesque. 
-quisque senectus orci lobortis vehicula sit, id rhoncus id convallis eget hendrerit, turpis proin sem viverra. 
-vehicula cubilia neque ad curabitur hac mi nam molestie porttitor posuere, orci eleifend suspendisse potenti turpis aptent in quisque velit senectus sagittis, interdum aenean nullam maecenas id luctus auctor eros dictum. 
-hac nunc odio integer pretium porttitor phasellus viverra curabitur, ultrices risus diam elementum suspendisse egestas quis augue, senectus rutrum platea luctus quis vestibulum curabitur. 
-</p>
+
+<!-- Home content -->
+<div class="container-fluid">
+    <div class="row">
+        
+        <!-- left side bar -->
+        <div class="col-md-2">
+            Left Side Bar ---------------------------------------------------------------------------------
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-8">
+            
+            <!-- row do conteudo -->
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center">Featured Products</h2>
+                    <div class="row">
+                        <!-- produto -->
+                        <?php
+                        // includes produto
+                        require_once 'functions.php';
+                        require_once 'classes/Produto.php';
+                       
+                        
+                        $sqlprodutos = sqltoarray(  
+                                "SELECT produto.id,produto.nome AS nome, midia.sigla AS midia,artista.nome AS artista,album.nome AS album,genero.nome AS genero,produto.preco AS preco,produto.qtd_estoque FROM produto 
+                                INNER JOIN album ON produto.cod_album = album.id
+                                INNER JOIN midia ON produto.cod_midia = midia.id
+                                INNER JOIN artista ON album.cod_artista = artista.id
+                                INNER JOIN genero ON album.cod_genero = genero.id
+                                WHERE produto.qtd_estoque > 0;");
+                                foreach ($sqlprodutos as $sql) {
+                                    $produto = new Produto();
+                                    $produto->setIdProduto($sql['id']);
+                                    $produto->setNomeProduto($sql['nome']);
+                                    $produto->setPrecoProduto($sql['preco']);
+                                    echo("  <div class='col-md-4'>
+                                                <h5>".$produto->getNomeProduto()."</h5>
+                                                <img src='img/products/pfthedarksideofthemoon.jpg' class='img-thumbnail' alt='Dark Side of the Moon' />
+                                                <div class='mb-0 mt-1'>
+                                                    <p class='price'>Valor unitário: R$".$produto->getPrecoProduto()."</p>
+                                                </div>
+                                                <div class='mb-3 mt-0'>
+                                                    <button type='button' class='btn btn-sm btn-success btn-dark' data-togle='modal' data-target='#details-1' id='".$produto->getIdProduto()."'>
+                                                        Mais Informações
+                                                    </button>
+                                                </div>
+                                            </div>");
+                                }
+                        ?>
+                        <!-- fim produto -->
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Right Side Bar -->
+            <div class="col-md-2">
+                Right Side Bar ---------------------------------------------------------------------------------
+            </div>
+        </div>
+
+
+        
+    </div>
+    
+
+    
 </div>
 <!-- </body> -->
 <?php include "includes/bottom.php";?>

@@ -1,166 +1,106 @@
 <?php
-	// Page Title
-	$page_title = 'Cadastro';
-
-	
-	// Conexão 
-	require_once 'db_connect.php';
-
-	// iniciar sessão
-        if(!isset($_SESSION)):
-            session_start();
-        endif;
+    // iniciar sessão
+    if(!isset($_SESSION)):
+        session_start();
+    endif;
     
-	// Include
-	include "functions.php";
+    // Include
+    include_once 'lib.php';
+    require_once 'classes/_classes.php';
+
+    // Verificar se o botão ja foi clicado
+    if(isset($_POST['btn-cadastrar'])):
+	//array para salvar as mensagens de erro
+	$erros = array();
         
-        // Classes
-        require_once 'classes/usuario.php';
-
-	// Verificar se o botão ja foi clicado
-	if(isset($_POST['btn-cadastrar'])):
-		//array para salvar as mensagens de erro
-		$erros = array();
-                // passa os dados vindos do $_POST em suas respectivas variaveis
-        
-                // Estancia os objetos
-                $usuario = new usuario();
+        $usuario = new Usuario();
                 
-                
-                $usuario->setNome(cleanstring($_POST['nome']));
-                $usuario->setLogin(cleanstring($_POST['login']));
-                $usuario->setSenha(cleanstring($_POST['senha']));
-                $usuario->setEmail(cleanstring($_POST['email']));
-                $usuario->setCpf(cleanstring($_POST['cpf']));
-                $usuario->setDatadenasc(cleanstring($_POST['bdate']));
-                $usuario->setTelefone(cleanstring($_POST['telefone']));
-                $usuario->setCelular(cleanstring($_POST['celular']));
-                $usuario->setEndereco(cleanstring($_POST['endereco']));
-                $usuario->setCidade(cleanstring($_POST['cidade']));
-                $usuario->setEstado(cleanstring($_POST['estado']));
-                $usuario->setNome($usuario->getNome());
+        $usuario->setNomeUsuario(cleanstring($_POST['nome']));
+        $usuario->setLoginUsuario(cleanstring($_POST['login']));
+        $usuario->setSenhaUsuario(md5(cleanstring($_POST['senha'])));
+        $usuario->setEmailUsuario(cleanstring($_POST['email']));
+        $usuario->setCpfUsuario(cleanstring($_POST['cpf']));
 
-
-        //echo $nome.$email.$cpf.$bdate.$celular.$login.$senha;
         // verifica se as variaveis (campos) estão vazias
-        if(empty($usuario->getLogin()) or empty($usuario->getSenha()) or empty($usuario->getEmail()) or empty($usuario->getCpf()) or empty($usuario->getCelular()) or empty($usuario->getNome())):  
-			$erros[] = "<li> Todos os campos devem ser preenchidos. </li>";
+        if(empty($usuario->getLoginUsuario()) or empty($usuario->getSenhaUsuario()) or empty($usuario->getEmailUsuario()) or empty($usuario->getCpfUsuario()) or empty($usuario->getNomeUsuario())):  
+            $erros[] = "<li> Todos os campos devem ser preenchidos. </li>";
         else:
-            // verificar se o usuario ja existe (melhorar) *****************************
-            //$query = "SELECT * FROM usuarios WHERE login = '$login' OR email = '$email' OR cpf = '$cpf'";
-			$resultado = sqltoarray("SELECT * FROM usuarios WHERE login = '".$usuario->getLogin()."'");
-			if($resultado['0']['login'] == $usuario->getLogin()):
-				$erros[] = "<li> Login já cadastrado. </li>";
-			elseif($resultado['0']['email'] == $usuario->getEmail()):
-				$erros[] = "<li> Email já cadastrado. </li>";
-			elseif($resultado['0']['cpf'] == $usuario->getCpf()):
-				$erros[] = "<li> CPF já cadastrado. </li>";
-            else:
+            // verificar se o usuario ja existe
+            if(verfExiste('Usuarios', 'login', $usuario->getLoginUsuario())){
+                $erros[] = "<li> Login ja está em uso</li>";
+            } elseif (verfExiste('Usuarios', 'email', $usuario->getEmailUsuario())) {
+                $erros[] = "<li> Email ja está em uso</li>";            
+            } elseif (verfExiste('Usuarios', 'cpf', $usuario->getCpfUsuario())) {
+                $erros[] = "<li> CPF ja cadastrado</li>";            
+            } else{
                 // insere os dados no banco
-			    $usuario->setSenha(md5($usuario->getSenha()));
-			    $query = 
-                                    "INSERT INTO usuarios (
-                                        nome,
-                                        cpf,
-                                        login,
-                                        senha,
-                                        email,
-                                        role
-                                        ) VALUES ('"
-                                            .$usuario->getNome()."','"
-                                            .$usuario->getCpf()."','"
-                                            .$usuario->getLogin()."','"
-                                            .$usuario->getSenha()."','"
-                                            .$usuario->getEmail()."','"
-                                            .$usuario->getRole()."');";
-			    if(pg_query($dbconn, $query)):
-					$resultado = sqltoarray("SELECT * FROM usuarios WHERE login = '".$usuario->getLogin()."'");
-					$usuario->setId($resultado['0']['id']);
-					$query = 
-                                        "INSERT INTO clientes(
-                                            datadenasc,
-                                            telefone,
-                                            celular,
-                                            endereco,
-                                            cidade,
-                                            estado,
-                                            cod_usuario
-                                            ) VALUES ('"
-                                                    .$usuario->getDatadenasc()."','"
-                                                    .$usuario->getTelefone()."','"
-                                                    .$usuario->getCelular()."','"
-                                                    .$usuario->getEndereco()."','"
-                                                    .$usuario->getCidade()."','"
-                                                    .$usuario->getEstado()."','"
-                                                    .$usuario->getId()."')";
-                                        
-					if(pg_query($dbconn, $query)):	
-						$erros[] = "<li> Cadastro realizado com sucesso.</li>";
-					else:
-						$erros[] = "<li> Erro inesperado [COD=223]. </li>";
-					endif;		
-                else:
-					$erros[] = "<li> Erro inesperado [COD=222]. </li>";
-                endif;    
-            endif;
-		endif;	
-	endif;
-?>
-<!-- <html> -->
-<?php 
-	include "includes/top.php";
-	include "includes/navbar.php";	
+                $usuario->criar_usuario();
+                $usuario->Cliente(
+                        cleanstring($_POST['bdate']),
+                        cleanstring($_POST['telefone']),
+                        cleanstring($_POST['celular']),
+                        cleanstring($_POST['endereco']),
+                        cleanstring($_POST['cidade']),
+                        cleanstring($_POST['estado']));
+                $usuario->criar_cliente();
+                $erros[] = "<li> Cadastro realizado com sucesso.</li>";                
+            }
+        endif; 
+    endif;    
+    
+    top('Cadastrar');
+    navbar();	
 ?>
 <!-- <body> -->
-	<div class="container">
-		<table style="width:100%">
-			<form class="form-control-plaintext" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <table class="table">
-				<thead>
-					<tr>
-						<div class="text-center">
-							<h1> Cadastro </h1>
-						</div>
-					<tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Nome: <input class="form-text" type="text" name="nome"></td>
-						<td>Login: <input class="form-text" type="text" name="login"></td>
-						<td>CPF: <input class="form-text" type="float" name="cpf"></td>
-					</tr>
-					<tr>
-						<td>Email: <input class="form-text" type="email" name="email"></td>
-						<td>Senha: <input class="form-text" type="password" name="senha"></td>
-						<td>Data de Nascimento: <input class="form-text" type="date" name="bdate"></td>
-					</tr>
-					<tr>
-						<td>Telefone: <input class="form-text" type="text" name="telefone"></td>
-						<td>Endereço: <input class="form-text" type="text" name="endereco"></td>
-						<td>Estado: <input class="form-text" type="text" name="estado"></td>
-					</tr>
-					<tr>
-						<td>Celular: <input class="form-text" type="text" name="celular"></td>
-						<td>Cidade: <input class="form-text" type="text" name="cidade"></td>
-						<td></td>
-					</tr>
-				</tbody>			
-			</table>
+<div class="container">
+    <table style="width:100%">
+        <form class="form-control-plaintext" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+            <table class="table table-borderless">
+		<thead>
+                    <tr>
 			<div class="text-center">
-			<br><br>
-                        <?php
-			// se existir erros, exibe
-			if(!empty($erros)):
-				foreach ($erros as $erro):
-					echo $erro."<br>";
-                                        
-				endforeach;
-			endif;	
-                        ?>
-			<button class="btn btn-lg btn-primary" type="submit" name="btn-cadastrar">Cadastrar</button>
+                            <h1> Cadastro </h1>
 			</div>
-		</form>
-	</div>
+                    </tr>
+		</thead>
+		<tbody>
+                    <tr>
+			<td>Nome: <input class="form-text" type="text" name="nome"></td>
+			<td>Login: <input class="form-text" type="text" name="login"></td>
+			<td>CPF: <input class="form-text" type="float" name="cpf"></td>
+                    </tr>
+                    <tr>
+			<td>Email: <input class="form-text" type="email" name="email"></td>
+			<td>Senha: <input class="form-text" type="password" name="senha"></td>
+			<td>Data de Nascimento: <input class="form-text" type="date" name="bdate"></td>
+                    </tr>
+                    <tr>
+			<td>Telefone: <input class="form-text" type="text" name="telefone"></td>
+			<td>Endereço: <input class="form-text" type="text" name="endereco"></td>
+			<td>Estado: <input class="form-text" type="text" name="estado"></td>
+                    </tr>
+                    <tr>
+			<td>Celular: <input class="form-text" type="text" name="celular"></td>
+			<td>Cidade: <input class="form-text" type="text" name="cidade"></td>
+			<td></td>
+                    </tr>
+		</tbody>			
+            </table>
+            <div class="text-center">
+                <br><br>
+                <?php
+                    // se existir erros, exibe
+                    if(!empty($erros)):
+                        foreach ($erros as $erro):
+                            echo $erro."<br>";            
+                        endforeach;
+                    endif;	
+                ?>
+                <button class="btn btn-lg btn-primary" type="submit" name="btn-cadastrar">Cadastrar</button>
+            </div>
+	</form>
+    </table>    
+</div>
 <!-- </body> -->
-<?php include "includes/bottom.php";?>
+<?php bottom();?>
 <!-- </html> -->

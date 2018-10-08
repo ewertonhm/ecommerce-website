@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/login.php</file>
-            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/cadastrar.php</file>
-            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/classes/pessoa.php</file>
-            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/classes/cliente.php</file>
-            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/classes/usuario.php</file>
-            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/db.sql</file>
-            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/db_connect.php</file>
+            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/classes/Cliente.php</file>
+            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/classes/Midia.php</file>
+            <file>file:/C:/Users/Prof%20Arquimedes/Documents/GitHub/ecommerce-website/classes/Album.php</file>
         </group>
     </open-files>
 </project-private>

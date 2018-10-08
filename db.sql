@@ -11,12 +11,12 @@ CREATE TABLE usuarios(
 
 CREATE TABLE clientes(
     id SERIAL PRIMARY KEY,
-    datadenasc DATE,
-    telefone VARCHAR(15),
-    celular VARCHAR(15),
+    nasc DATE,
+    one VARCHAR(15),
+    cel VARCHAR(15),
     endereco VARCHAR(255),
     cidade VARCHAR(255),
-    estado VARCHAR(255),
+    uf VARCHAR(255),
     cod_usuario INT REFERENCES usuarios(id)
 );
 
@@ -35,9 +35,7 @@ CREATE TABLE album(
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     ano INT,
-    capa TEXT,
-    cod_artista INT REFERENCES artista(id),
-    cod_genero INT REFERENCES genero(id)
+    capa TEXT
 );
 
 CREATE TABLE faixa(
@@ -45,7 +43,9 @@ CREATE TABLE faixa(
     nome VARCHAR(255) NOT NULL,
     posicao INT,
     duracao VARCHAR(25),
-    cod_album INT REFERENCES album(id)
+    cod_artista INT REFERENCES artista(id),
+    cod_album INT REFERENCES album(id),
+    cod_genero INT REFERENCES genero(id)
 );
 
 CREATE TABLE midia(
@@ -134,17 +134,42 @@ INSERT INTO "midia" (sigla, nome, descricao) VALUES
 ('DVD','Digital Video Disc','DVD, sigla de "Digital Video Disc" (em português, Disco Digital de Video) derivada da expressão inglesa "Digital Versatile Disc",[1] (em português, Disco Digital Versátil) é um formato digital para arquivar ou guardar dados, som e voz, tendo uma maior capacidade de armazenamento que o CD, devido a uma tecnologia óptica superior, além de padrões melhorados de compressão de dados, sendo criado no ano de 1995.'),
 ('STREAM','Streaming','A transmissão contínua,[1][2][3] também conhecida por fluxo de média (português europeu) ou fluxo de mídia (português brasileiro) (bem como pelo anglicismo streaming) é uma forma de distribuição digital, em oposição à descarga de dados.[4] A difusão de dados, geralmente em uma rede através de pacotes, é frequentemente utilizada para distribuir conteúdo multimídia através da Internet. Nesta forma, as informações não são armazenadas pelo usuário em seu próprio computador. Assim não é ocupado espaço no disco rígido (HD), para a posterior reprodução[5] — a não ser o arquivamento temporário no cache do sistema ou que o usuário ativamente faça a gravação dos dados. O fluxo dos dados é recebido e a mídia é reproduzida à medida que chega ao usuário, dependendo da largura de banda seja suficiente para reproduzir os conteúdos, se não for o suficiente ocorrerá interrupções na reprodução do arquivo, por problema no buffer.');
 
-INSERT INTO "album" (nome, ano, capa, cod_artista, cod_genero) VALUES 
-('At the Beeb',1989,'ADICIONAR',11,10),
-('A Night at the Opera',1975,'ADICIONAR',11,10),
-('Queen II',1974,'ADICIONAR',11,10),
-('Californication',1999,'ADICIONAR',1,11),
-('Abbey Road',1969,'ADICIONAR',2,10),
-('Absolution',2003,'ADICIONAR',3,11),
-('A Head Full of Dreams',2015,'ADICIONAR',4,3),
-('Nevermind',1991,'ADICIONAR',5,12),
-('The Dark Side of the Moon',1973,'ADICIONAR',12,13),
-('Hot Fuss',2004,'ADICIONAR',13,1);
+INSERT INTO "album" (nome, ano, capa) VALUES 
+('At the Beeb',1989,'ADICIONAR'),
+('A Night at the Opera',1975,'ADICIONAR'),
+('Queen II',1974,'ADICIONAR'),
+('Californication',1999,'ADICIONAR'),
+('Abbey Road',1969,'ADICIONAR'),
+('Absolution',2003,'ADICIONAR'),
+('A Head Full of Dreams',2015,'ADICIONAR'),
+('Nevermind',1991,'ADICIONAR'),
+('The Dark Side of the Moon',1973,'ADICIONAR'),
+('Hot Fuss',2004,'ADICIONAR');
+
+INSERT INTO "faixa" (nome,posicao,duracao,cod_genero,cod_artista,cod_album) VALUES 
+('FAIXA1',1,3.20,11,10,1),
+('FAIXA2',1,3.1,11,10,1),
+('FAIXA3',1,2.20,11,10,1),
+('FAIXA4',1,4.0,11,10,1),
+('FAIXA5',1,2.50,11,10,1),
+('FAIXA6',1,4.20,11,10,1),
+('FAIXA7',1,3.20,11,10,1),
+('FAIXA8',1,3.20,11,10,1),
+('FAIXA9',1,3.20,11,10,1),
+('FAIXA10',1,3.20,11,10,1);
+
+INSERT INTO "faixa" (nome,posicao,duracao,cod_genero,cod_artista,cod_album) VALUES 
+('FAIXA1',1,3.20,11,10,2),
+('FAIXA2',1,3.1,11,10,2),
+('FAIXA3',1,2.20,11,10,2),
+('FAIXA4',1,4.0,11,10,2),
+('FAIXA5',1,2.50,11,10,2),
+('FAIXA6',1,4.20,11,10,2),
+('FAIXA7',1,3.20,11,10,2),
+('FAIXA8',1,3.20,11,10,2),
+('FAIXA9',1,3.20,11,10,2),
+('FAIXA10',1,3.20,11,10,2);
+
 
 INSERT INTO "produto" (nome,cod_album,cod_midia,preco,qtd_estoque) VALUES
 ('CD Queen - At the Beep',1,3,19.99,10),
@@ -153,8 +178,9 @@ INSERT INTO "produto" (nome,cod_album,cod_midia,preco,qtd_estoque) VALUES
 ('LP Pink Floyd - The Dark Side of the Moon',9,1,49.99,3),
 ('CD Red Hot Chilli Peppers - Californication',4,3,19.99,22);
 
-SELECT midia.sigla AS midia,artista.nome AS artista,album.nome AS album,genero.nome AS genero,produto.preco,produto.qtd_estoque FROM produto 
+SELECT produto.id,produto.nome AS nome, midia.sigla AS midia,artista.nome AS artista,album.nome AS album,genero.nome AS genero,produto.preco AS preco,produto.qtd_estoque FROM produto 
 INNER JOIN album ON produto.cod_album = album.id
 INNER JOIN midia ON produto.cod_midia = midia.id
 INNER JOIN artista ON album.cod_artista = artista.id
-INNER JOIN genero ON album.cod_genero = genero.id;
+INNER JOIN genero ON album.cod_genero = genero.id
+WHERE produto.qtd_estoque > 0;
