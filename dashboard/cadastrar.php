@@ -13,8 +13,8 @@
 	include "../functions.php";
         
         // Classes
-        require_once '../classes/usuario.php';
-        require_once '../classes/dadosUsuarios.php';
+        require_once '../classes/Usuario.php';
+        require_once '../classes/Cliente.php';
 
 	// Verificar se o botão ja foi clicado
 	if(isset($_POST['btn-cadastrar'])):

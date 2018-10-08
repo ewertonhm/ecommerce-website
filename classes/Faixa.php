@@ -1,5 +1,5 @@
 <?php
-class Faixas extends Album{
+class Faixa extends Album{
 	public $posicao;
 	public $titulo;
 	public $tempoTotal;

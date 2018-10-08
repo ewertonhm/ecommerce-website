@@ -7,35 +7,30 @@
  * @author Ewerton
  */
 
-require_once 'cliente.php';
+require_once 'DB.php';
 
-class Usuario extends Cliente{
-    private $idUsuario;
-    private $nomeUsuario;
-    private $cpfUsuario;
-    private $loginUsuario;
-    private $senhaUsuario;
-    private $emailUsuario;
-    private $roleUsuario;
-    
-    function getIdUsuario() {
-        return $this->idUsuario;
+class Usuario{
+    public  $nomeUsuario, $loginUsuario, $emailUsuario;
+    private  $roleUsuario;
+    protected $idUsuario, $cpfUsuario, $dbUsuario, $tabelaUsuario;
+
+    public function __construct() {
+        $this->setRoleUsuario('cliente');
+        $this->tabelaUsuario = 'usuarios';
+        $this->dbUsuario = DB::get_instance();
     }
-
+    
+    public function admin() {
+        $this->setRoleUsuario('ADM');
+    }
+    
+    
     function getNomeUsuario() {
         return $this->nomeUsuario;
     }
 
-    function getCpfUsuario() {
-        return $this->cpfUsuario;
-    }
-
     function getLoginUsuario() {
         return $this->loginUsuario;
-    }
-
-    function getSenhaUsuario() {
-        return $this->senhaUsuario;
     }
 
     function getEmailUsuario() {
@@ -46,24 +41,24 @@ class Usuario extends Cliente{
         return $this->roleUsuario;
     }
 
-    function setIdUsuario($idUsuario) {
-        $this->idUsuario = $idUsuario;
+    function getIdUsuario() {
+        return $this->idUsuario;
+    }
+
+    function getCpfUsuario() {
+        return $this->cpfUsuario;
+    }
+
+    function getDbUsuario() {
+        return $this->dbUsuario;
     }
 
     function setNomeUsuario($nomeUsuario) {
         $this->nomeUsuario = $nomeUsuario;
     }
 
-    function setCpfUsuario($cpfUsuario) {
-        $this->cpfUsuario = $cpfUsuario;
-    }
-
     function setLoginUsuario($loginUsuario) {
         $this->loginUsuario = $loginUsuario;
-    }
-
-    function setSenhaUsuario($senhaUsuario) {
-        $this->senhaUsuario = $senhaUsuario;
     }
 
     function setEmailUsuario($emailUsuario) {
@@ -74,14 +69,17 @@ class Usuario extends Cliente{
         $this->roleUsuario = $roleUsuario;
     }
 
-    
-    public function __construct() {
-        $this->setRoleUsuario('cliente');
+    function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
     }
-    
-    public function admin() {
-        $this->setRoleUsuario('ADM');
+
+    function setCpfUsuario($cpfUsuario) {
+        $this->cpfUsuario = $cpfUsuario;
     }
-    
+
+    function setDbUsuario($dbUsuario) {
+        $this->dbUsuario = $dbUsuario;
+    }
+        
            
 }

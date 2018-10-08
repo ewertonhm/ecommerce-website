@@ -1,21 +1,13 @@
 <?php
-	// Page Title
-	$page_title = 'Cadastro';
-
-	
-	// Conexão 
-	require_once 'db_connect.php';
-
 	// iniciar sessão
         if(!isset($_SESSION)):
             session_start();
         endif;
     
 	// Include
-	include "functions.php";
-        
-        // Classes
+	include_once 'lib.php';
         require_once 'classes/Usuario.php';
+        require_once 'classes/DB.php';
 
 	// Verificar se o botão ja foi clicado
 	if(isset($_POST['btn-cadastrar'])):
@@ -25,7 +17,7 @@
         
                 // Estancia os objetos
                 $usuario = new Usuario();
-                
+                $db = DB::get_instance();
                 
                 $usuario->setNomeUsuario(cleanstring($_POST['nome']));
                 $usuario->setLoginUsuario(cleanstring($_POST['login']));
@@ -39,76 +31,56 @@
                 $usuario->setCidadeCliente(cleanstring($_POST['cidade']));
                 $usuario->setUfCliente(cleanstring($_POST['estado']));
 
-
-        //echo $nome.$email.$cpf.$bdate.$celular.$login.$senha;
         // verifica se as variaveis (campos) estão vazias
         if(empty($usuario->getLoginUsuario()) or empty($usuario->getSenhaUsuario()) or empty($usuario->getEmailUsuario()) or empty($usuario->getCpfUsuario()) or empty($usuario->getCelCliente()) or empty($usuario->getNomeUsuario())):  
-			$erros[] = "<li> Todos os campos devem ser preenchidos. </li>";
+            $erros[] = "<li> Todos os campos devem ser preenchidos. </li>";
         else:
-            // verificar se o usuario ja existe (melhorar) *****************************
-            //$query = "SELECT * FROM usuarios WHERE login = '$login' OR email = '$email' OR cpf = '$cpf'";
-			$resultado = sqltoarray("SELECT * FROM usuarios WHERE login = '".$usuario->getLoginUsuario()."'");
-			if($resultado['0']['login'] == $usuario->getLoginUsuario()):
-				$erros[] = "<li> Login já cadastrado. </li>";
-			elseif($resultado['0']['email'] == $usuario->getEmailUsuario()):
-				$erros[] = "<li> Email já cadastrado. </li>";
-			elseif($resultado['0']['cpf'] == $usuario->getCpfUsuario()):
-				$erros[] = "<li> CPF já cadastrado. </li>";
-            else:
+            // verificar se o usuario ja existe
+            if(verfExiste('Usuarios', 'login', $usuario->getLoginUsuario())){
+                $erros[] = "<li> Login ja está em uso</li>";
+            } elseif (verfExiste('Usuarios', 'email', $usuario->getEmailUsuario())) {
+                $erros[] = "<li> Email ja está em uso</li>";            
+            } elseif (verfExiste('Usuarios', 'cpf', $usuario->getCpfUsuario())) {
+                $erros[] = "<li> CPF ja cadastrado</li>";            
+            } else{
                 // insere os dados no banco
-			    $usuario->setSenhaUsuario(md5($usuario->getSenhaUsuario()));
-			    $query = 
-                                    "INSERT INTO usuarios (
-                                        nome,
-                                        cpf,
-                                        login,
-                                        senha,
-                                        email,
-                                        role
-                                        ) VALUES ('"
-                                            .$usuario->getNomeUsuario()."','"
-                                            .$usuario->getCpfUsuario()."','"
-                                            .$usuario->getLoginUsuario()."','"
-                                            .$usuario->getSenhaUsuario()."','"
-                                            .$usuario->getEmailUsuario()."','"
-                                            .$usuario->getRoleUsuario()."');";
-			    if(pg_query($dbconn, $query)):
-					$resultado = sqltoarray("SELECT * FROM usuarios WHERE login = '".$usuario->getLoginUsuario()."'");
-					$usuario->setIdUsuario($resultado['0']['id']);
-					$query = 
-                                        "INSERT INTO clientes(
-                                            datadenasc,
-                                            telefone,
-                                            celular,
-                                            endereco,
-                                            cidade,
-                                            estado,
-                                            cod_usuario
-                                            ) VALUES ('"
-                                                    .$usuario->getNascCliente()."','"
-                                                    .$usuario->getFoneCliente()."','"
-                                                    .$usuario->getCelCliente()."','"
-                                                    .$usuario->getEndCliente()."','"
-                                                    .$usuario->getCidadeCliente()."','"
-                                                    .$usuario->getUfCliente()."','"
-                                                    .$usuario->getIdUsuario()."')";
-                                        
-					if(pg_query($dbconn, $query)):	
-						$erros[] = "<li> Cadastro realizado com sucesso.</li>";
-					else:
-						$erros[] = "<li> Erro inesperado [COD=223]. </li>";
-					endif;		
-                else:
-					$erros[] = "<li> Erro inesperado [COD=222]. </li>";
-                endif;    
-            endif;
-		endif;	
-	endif;
+		$usuario->setSenhaUsuario(md5($usuario->getSenhaUsuario()));
+                $arrayusuario = [  
+                    'nome'=>$usuario->getNomeUsuario(),
+                    'cpf'=>$usuario->getCpfUsuario(),
+                    'login'=>$usuario->getLoginUsuario(),
+                    'senha'=>$usuario->getSenhaUsuario(),
+                    'email'=>$usuario->getEmailUsuario(),
+                    'role'=>$usuario->getRoleUsuario()
+                        ];
+                if($db->insert('usuarios',$arrayusuario)){
+                    $usuario->setIdUsuario($db->get_lastInsertID());
+                    $arraycliente = [
+                        'datadenasc'=>$usuario->getNascCliente(),
+                        'telefone'=>$usuario->getFoneCliente(),
+                        'celular'=>$usuario->getCelCliente(),
+                        'endereco'=>$usuario->getEndCliente(),
+                        'cidade'=>$usuario->getCidadeCliente(),
+                        'estado'=>$usuario->getUfCliente(),
+                        'cod_usuario'=>$usuario->getIdUsuario()
+                    ];
+                    if($db->insert('clientes',$arraycliente)){
+                        $erros[] = "<li> Cadastro realizado com sucesso.</li>";
+                    } else {
+                        $erros[] = "<li> Erro inesperado [COD=223]. </li>";
+                    }
+                } else {
+                    $erros[] = "<li> Erro inesperado [COD=222]. </li>";
+                }
+                
+            }
+        endif; 
+    endif;    
 ?>
 <!-- <html> -->
 <?php 
-	include "includes/top.php";
-	include "includes/navbar.php";	
+	top('Cadastrar');
+	navbar();	
 ?>
 <!-- <body> -->
 	<div class="container">
@@ -161,5 +133,5 @@
 		</form>
 	</div>
 <!-- </body> -->
-<?php include "includes/bottom.php";?>
+<?php bottom();?>
 <!-- </html> -->

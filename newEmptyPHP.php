@@ -1,13 +1,7 @@
 <?php
+require_once 'classes/artista.php';
+$artista = new artista('teste1',1);
 
-require_once 'classes/DB.php';
+$artista->ler_artista();
 
-$db = DB::get_instance();
-
-$contact = ['Ewerton','Marschalk','Ewerton@hotmail.com','44444444444','5555555555555'];
-
-//$db->query("",[]);
-$db->query("INSERT INTO contacts (`fname`,`lname`,`email`,`cell_phone`,`home_phone`) values (?,?,?,?,?)",$contact);
-
-echo $db->get_error();
-echo $db->get_count();
+echo $artista->get_nomeArtista();

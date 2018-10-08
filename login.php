@@ -1,31 +1,31 @@
 <?php
-	// Page Title
-	$page_title = 'Login';
+	require_once 'classes/DB.php';
+        require_once 'classes/Usuario.php';
+        include_once 'lib.php';
 
-	// Conexão 
-	require_once 'db_connect.php';
-
-	// Sessão
-	session_start();
-
-	// Include
-	include "functions.php";
-
+        $usuario = new Usuario;
+        $db = DB::get_instance();
+        
+        if(!isset($_SESSION)):
+             session_start();
+        endif;
+        
 	// Verificar se o botão ja foi clicado
 	if(isset($_POST['btn-entrar'])):
 		//array para salvar as mensagens de erro
 		$erros = array();
-		// passa os dados vindos do $_POST em suas respectivas variaveis
-		$login = cleanstring($_POST['login']);
-		$senha = cleanstring($_POST['senha']);
+        
+		// passa os dados vindos do $_POST para o objeto usuario
+		$usuario->setLoginUsuario(cleanstring($_POST['login']));
+		$usuario->setSenhaUsuario(cleanstring($_POST['senha']));
 
 		// verifica se as variaveis (campos) estão vazias
-		if(empty($login) or empty($senha)):
+		if(empty($usuario->getLoginUsuario()) or empty($usuario->getSenhaUsuario())):
 			$erros[] = "<li> O campo login e senha precias ser preenchido </li>";
 		else:
-			if(login($login,$senha)):
+			if(login($usuario->getLoginUsuario(),$usuario->getSenhaUsuario())):
 				$_SESSION['logado'] = true;
-				$_SESSION['id_usuario'] = loginGetid($login, $senha);
+				$_SESSION['id_usuario'] = loginGetid($usuario->getLoginUsuario(), $usuario->getSenhaUsuario());
 				// remember-me e cookies setup
 				if(!empty($_POST["remember"])):
 					setcookie ("login",$_POST["login"],time()+ (10 * 365 * 24 * 60 * 60));
@@ -49,7 +49,7 @@
 ?>
 
 <!-- <html> -->
-<?php include "includes/top-login.php";?>
+<?php topLogin('Login');?>
 <!-- <body> -->
 		<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 			<div class="text-center mb-4">
@@ -76,4 +76,4 @@
       		<p class="mt-5 mb-3 text-muted">&copy; 2018</p>	
       		</div>
 		</form>
-<?php include "includes/bottom-login.php";?>
+<?php bottomLogin();?>
