@@ -1,13 +1,13 @@
 <?php
-require 'Album.php';
-require 'Artista.php';
-require 'Carrinho.php';
-require 'Cliente.php';
-require 'DB.php';
-require 'Email.php';
-require 'Faixa.php';
-require 'Genero.php';
-require 'Midia.php';
-require 'Produto.php';
-require 'Usuario.php';
+require_once 'Album.php';
+require_once 'Artista.php';
+require_once 'Carrinho.php';
+require_once 'Cliente.php';
+require_once 'DB.php';
+require_once 'Email.php';
+require_once 'Faixa.php';
+require_once 'Genero.php';
+require_once 'Midia.php';
+require_once 'Produto.php';
+require_once 'Usuario.php';
 
