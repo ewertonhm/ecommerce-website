@@ -55,7 +55,7 @@
 <div class="container">
     <table style="width:100%">
         <form class="form-control-plaintext" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <table class="table">
+            <table class="table table-borderless">
 		<thead>
                     <tr>
 			<div class="text-center">
