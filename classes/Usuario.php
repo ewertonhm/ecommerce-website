@@ -27,6 +27,9 @@ class Usuario{
         $this->_cliente->set_cidadeCliente($cidade);
         $this->_cliente->set_ufCliente($uf);
     }
+    public function criar_cliente(){
+        $this->_cliente->criar_cliente();
+    }
 
     public function logar($login,$senha){
         $this->set_loginUsuario(md5($login));
@@ -89,6 +92,7 @@ class Usuario{
         $this->set_emailUsuario($consulta->email);
         $this->set_cpfUsuario($consulta->cpf);
     }
+    
     
     public function admin() {
         $this->set_roleUsuario('ADM');
