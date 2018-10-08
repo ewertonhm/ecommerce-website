@@ -8,5 +8,5 @@
 <!-- <body> -->
     <!-- CONTEUDO DO BODY AQUI -->
 <!-- </body> -->
-<?php footer();?>
+<?php bottom();?>
 <!-- </html> -->

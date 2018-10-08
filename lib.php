@@ -135,7 +135,7 @@
                     <!-- Bootstrap CSS -->
                     <link href='node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
                     <!-- Bootstrap Custom CSS -->
-                    <link href='node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+                    <link href='node_modules/bootstrap/compiler/styles.css' rel='stylesheet'>
                 </head>
                 <body>";
         }
@@ -154,7 +154,7 @@
                         <!-- Bootstrap CSS -->
                         <link href='node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
                         <!-- Bootstrap Custom CSS -->
-                        <link href='node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+                        <link href='node_modules/bootstrap/compiler/styles.css' rel='stylesheet'>
                         <link href='node_modules/bootstrap/compiler/login.css' rel='stylesheet'>
                 </head>
                 <body class='text-center'>";
@@ -174,7 +174,7 @@
                         <!-- Bootstrap CSS -->
                         <link href='../node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
                         <!-- Bootstrap Custom CSS -->
-                        <link href='../node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+                        <link href='../node_modules/bootstrap/compiler/styles.css' rel='stylesheet'>
                 </head>
                 <body>";
         }
@@ -193,7 +193,7 @@
                     <!-- Bootstrap CSS -->
                     <link href='../node_modules/bootstrap/compiler/bootstrap.css' rel='stylesheet'>
                     <!-- Bootstrap Custom CSS -->
-                    <link href='../node_modules/bootstrap/compiler/style.css' rel='stylesheet'>
+                    <link href='../node_modules/bootstrap/compiler/styles.css' rel='stylesheet'>
                     <link href='../node_modules/bootstrap/compiler/login.css' rel='stylesheet'>
             </head>
             <body class='text-center'>";
