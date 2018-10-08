@@ -1,40 +1,56 @@
 <?php
+
+require_once 'DB.php';
+
 class Midia{
-	public $tipoMidia;
-	public $id;
-	public $qtd;
-	public $preco;
+	public $_siglaMidia, $_nomeMidia, $_descricaoMidia; 
+	private $_idMidia, $_tabelaMidia, $_dbMidia;
+        
+        public function __construct($id = '',$sigla = '',$nome = '',$descricao = '') {
+            $this->set_siglaMidia($sigla);
+            $this->set_nomeMidia($nome);
+            $this->set_idMidia($id);
+        }
+        
+        function get_siglaMidia() {
+            return $this->_siglaMidia;
+        }
 
-	public function getMidia(){
-		return $this->tipoMidia;
-	}
+        function get_nomeMidia() {
+            return $this->_nomeMidia;
+        }
 
-	public function setMidia($tipoMidia){
-		$this->tipoMidia = $tipoMidia;
-	}
+        function get_descricaoMidia() {
+            return $this->_descricaoMidia;
+        }
 
-	public function getId(){
-		return $this->id;
-	}
+        function get_idMidia() {
+            return $this->_idMidia;
+        }
 
-	public function setId($id){
-		$this->id = $id;
-	}
+        function get_tabelaMidia() {
+            return $this->_tabelaMidia;
+        }
 
-	public function getQtd(){
-		return $this->qtd;
-	}
+        function set_siglaMidia($_siglaMidia) {
+            $this->_siglaMidia = $_siglaMidia;
+        }
 
-	public function setQtd($qtd){
-		$this->qtd = $qtd;
-	}
+        function set_nomeMidia($_nomeMidia) {
+            $this->_nomeMidia = $_nomeMidia;
+        }
 
-	public function getPreco(){
-		return $this->preco;
-	}
+        function set_descricaoMidia($_descricaoMidia) {
+            $this->_descricaoMidia = $_descricaoMidia;
+        }
 
-	public function setPreco($preco){
-		$this->preco = $preco;
-	}
+        function set_idMidia($_idMidia) {
+            $this->_idMidia = $_idMidia;
+        }
+
+        function set_tabelaMidia($_tabelaMidia) {
+            $this->_tabelaMidia = $_tabelaMidia;
+        }
+
 }
 
