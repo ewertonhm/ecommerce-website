@@ -3,6 +3,7 @@
         $GLOBALS['sql'] = DB::get_instance();
         
         
+        
 	function cleanstring($value){
     	$search = array("\\",  "\x00", "\n",  "\r",  "'",  '"', "\x1a");
     	$replace = array("\\\\","\\0","\\n", "\\r", "\'", '\"', "\\Z");

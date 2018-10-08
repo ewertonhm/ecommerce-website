@@ -24,7 +24,7 @@ class Faixa {
             $this->_albumFaixa->ler_album();
         }
         
-        function __construct($id = '',$nome = '',$duracao = '',$posicao = '',$genero,$artista,$album) {
+        function __construct($genero,$artista,$album,$id = '',$nome = '',$duracao = '',$posicao = '') {
             $this->set_idFaixa($id);
             $this->set_NomeFaixa($nome);
             $this->set_DuracaoFaixa($duracao);
@@ -45,8 +45,6 @@ class Faixa {
             }
         }
                 
-
-        
         function criar_faixa(){
             $faixa = [
                 'nome'=>$this->get_nomeFaixa(),
@@ -74,6 +72,20 @@ class Faixa {
         
         function excluir_faixa(){
             $this->_dbFaixa->delete($this->get_tabelaFaixa(),$this->get_idFaixa());
+        }
+        
+        function ler_faixa(){
+            $params = [
+                'conditions' => ['id = ?'],
+                'bind' => [$this->get_idAlbum()],
+            ];
+            $dados = $this->_dbFaixa->findFirst($this->get_tabelaFaixa(),$params);
+            $this->set_nomeFaixa($dados->nome);
+            $this->set_duracaoFaixa($dados->posicao);
+            $this->set_duracaoFaixa($dados->doracao);
+            $this->Album($dados->cod_album);
+            $this->Genero($dados->cod_genero);
+            $this->Artista($dados_cod_artista);
         }
         
         // Getter e Setters

@@ -11,12 +11,12 @@ CREATE TABLE usuarios(
 
 CREATE TABLE clientes(
     id SERIAL PRIMARY KEY,
-    datadenasc DATE,
-    telefone VARCHAR(15),
-    celular VARCHAR(15),
+    nasc DATE,
+    one VARCHAR(15),
+    cel VARCHAR(15),
     endereco VARCHAR(255),
     cidade VARCHAR(255),
-    estado VARCHAR(255),
+    uf VARCHAR(255),
     cod_usuario INT REFERENCES usuarios(id)
 );
 

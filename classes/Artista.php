@@ -25,8 +25,8 @@ class Artista {
         $this->set_idArtista($this->_dbArtista->get_lastInsertID());
     }
     public function editar_artista(){
-        $Artista = ['nome'=>$this->get_nomeArtista()];
-        $this->_dbArtista->update($this->get_tabelaArtista(),$this->get_idArtista(),$Artista);
+        $artista = ['nome'=>$this->get_nomeArtista()];
+        $this->_dbArtista->update($this->get_tabelaArtista(),$this->get_idArtista(),$artista);
     }
     public function excluir_artista(){
         $this->_db->delete($this->get_tabelaArtista(),$this->get_idArtista());

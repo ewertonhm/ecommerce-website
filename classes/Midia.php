@@ -9,8 +9,47 @@ class Midia{
         public function __construct($id = '',$sigla = '',$nome = '',$descricao = '') {
             $this->set_siglaMidia($sigla);
             $this->set_nomeMidia($nome);
+            $this->set_descricaoMidia($descricao);
             $this->set_idMidia($id);
+            $this->_dbMidia = DB::get_instance();
+            $this->set_tabelaMidia('midia');
         }
+        
+        function criar_midia(){
+            $midia = [
+                'nome'=>$this->get_nomeMidia(),
+                'sigla'=>$this->get_siglaMidia(),
+                'descricao'=>$this->get_descricaoMidia()
+                    ];
+            $this->_dbMidia->insert($this->get_tabelaMidia(),$midia);
+            $this->set_idMidia($this->_dbMidia->get_lastInsertID());
+        }
+        
+        function editar_midia(){
+            $midia = [
+                'nome'=>$this->get_nomeMidia(),
+                'sigla'=>$this->get_siglaMidia(),
+                'descricao'=>$this->get_descricaoMidia()
+                    ];
+            $this->_dbMidia->update($this->get_tabelaMidia(), $this->get_idMidia(),$midia);            
+        }
+        
+        function excluir_midia(){
+            $this->_dbMidia->delete($this->get_tabelaMidia(), $this->get_idMidia());
+        }
+        
+        function ler_midia(){
+            $params = [
+                'conditions' => ['id = ?'],
+                'bind' => [$this->get_idArtista()],
+                      ];
+            $dados = $this->_dbMidia->findFirst($this->get_tabelaMidia(),$params);
+            $this->set_nomeMidia($dados->nome);
+            $this->set_siglaMidia($dados->sigla);
+            $this->set_descricaoMidia($dados->descricao);
+        }
+        
+        //Getters e Setter 
         
         function get_siglaMidia() {
             return $this->_siglaMidia;

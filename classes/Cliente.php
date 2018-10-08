@@ -7,95 +7,146 @@
  */
 
 class Cliente {
-    private $idCliente;
-    private $nascCliente;
-    private $foneCliente;
-    private $celCliente;
-    private $endCliente;
-    private $cidadeCliente;
-    private $ufCliente;
+    public $_idCliente, $_nascCliente, $_foneCliente, $_celCliente, $_endCliente, $_cidadeCliente, $_ufCliente;
+    private $_dbCliente, $_tabelaCliente, $_idUsuario;
     
-    function getIdCliente() {
-        return $this->idCliente;
+    public function __construct($id) {
+        $this->set_tabelaCliente('clientes');
+        $this->_dbCliente = DB::get_instance();
+        $this->set_idUsuario($id);
     }
-
-    function getNascCliente() {
-        return $this->nascCliente;
-    }
-
-    function getFoneCliente() {
-        return $this->foneCliente;
-    }
-
-    function getCelCliente() {
-        return $this->celCliente;
-    }
-
-    function getEndCliente() {
-        return $this->endCliente;
-    }
-
-    function getCidadeCliente() {
-        return $this->cidadeCliente;
-    }
-
-    function getUfCliente() {
-        return $this->ufCliente;
-    }
-
-    function setIdCliente($idCliente) {
-        $this->idCliente = $idCliente;
-    }
-
-    function setNascCliente($nascCliente) {
-        $this->nascCliente = $nascCliente;
-    }
-
-    function setFoneCliente($foneCliente) {
-        $this->foneCliente = $foneCliente;
-    }
-
-    function setCelCliente($celCliente) {
-        $this->celCliente = $celCliente;
-    }
-
-    function setEndCliente($endCliente) {
-        $this->endCliente = $endCliente;
-    }
-
-    function setCidadeCliente($cidadeCliente) {
-        $this->cidadeCliente = $cidadeCliente;
-    }
-
-    function setUfCliente($ufCliente) {
-        $this->ufCliente = $ufCliente;
-    }
-
     
-        // funções criadas pelo lucas Angeli
-    	public function adicionar($itens, $qtd){
-		//os produtos da loja devem ter uma quantidade
-		//tem que ter um if pra ver se o cliente nao esta adicionando mais do que esta disponivel
-	}
 
-	public function verCarrinho(){
-		//vai mostrar os itens
-		//depois de abrir o carrinho da pra remover os itens
-	}
-
-	public function remover($itens, $qtd){
-
-	}
-
-	public function cadastrarCliente(){
-		//essa função é opcional
-		//se o cliente adicionar os itens no carrinho e nao se cadastrar, vai ter um botao para ele se cadastrar no final
-	}
-
-	public function debitado($itens, $qtd){
-		//multiplica itens*qtd
-		//é a função que vai gerar a conta para o cliente
-	}
+    public function ler_cliente_codusu(){
+        $params = [
+            'conditions' => ['cod_usuario = ?'],
+            'bind' => [$this->get_idUsuario()],
+        ];
+        $dados = $this->_dbCliente->FindFirst($this->get_tabelaCliente(),$params);
+        $this->set_idCliente($dados->id);
+        $this->set_nascCliente($dados->nasc);
+        $this->set_foneCliente($dados->fone);
+        $this->set_celCliente($dados->cel);
+        $this->set_endCliente($dados->endereco);
+        $this->set_cidadeCliente($dados->cidade);
+        $this->set_ufCliente($dados->uf);
+    }
     
-           
+    public function ler_cliente_codcli(){
+        $params = [
+            'conditions' => ['id = ?'],
+            'bind' => [$this->get_idCliente()],
+        ];
+        $dados = $this->_dbCliente->FindFirst($this->get_tabelaCliente(),$params);
+        $this->set_nascCliente($dados->nasc);
+        $this->set_foneCliente($dados->fone);
+        $this->set_celCliente($dados->cel);
+        $this->set_endCliente($dados->endereco);
+        $this->set_cidadeCliente($dados->cidade);
+        $this->set_ufCliente($dados->uf);
+        $this->set_idCliente($dados->cod_usuario);
+    }
+    
+    public function criar_cliente(){
+        $cliente = [
+            'nasc'=>$this->get_nascCliente(),
+            'fone'=>$this->get_foneCliente(),
+            'cel'=>$this->get_celCliente(),
+            'endereco'=>$this->get_endCliente(),
+            'cidade'=>$this->get_cidadeCliente(),
+            'uf'=>$this->get_ufCliente(),
+            'cod_usuario'=>$this->get_idUsuario()
+        ];
+        $this->_dbCliente->insert($this->get_tabelaCliente(),$cliente);
+        $this->set_idCliente($this->_dbCliente->get_lastInsertID());
+    }
+    
+    public function editar_cliente(){
+        $cliente = [
+            'nasc'=>$this->get_nascCliente(),
+            'fone'=>$this->get_foneCliente(),
+            'cel'=>$this->get_celCliente(),
+            'endereco'=>$this->get_endCliente(),
+            'cidade'=>$this->get_cidadeCliente(),
+            'uf'=>$this->get_ufCliente(),
+            'cod_usuario'=>$this->get_idUsuario()
+        ];
+        $this->_dbCliente->update($this->get_tabelaCliente(),$this->get_idCliente(),$cliente);
+    }
+    
+    public function excluir_cliente(){
+        $this->_dbCliente->delete($this->get_tabelaCliente(),$this->get_idCliente());
+    }
+            
+    function get_idCliente() {
+        return $this->_idCliente;
+    }
+
+    function get_nascCliente() {
+        return $this->_nascCliente;
+    }
+
+    function get_foneCliente() {
+        return $this->_foneCliente;
+    }
+
+    function get_celCliente() {
+        return $this->_celCliente;
+    }
+
+    function get_endCliente() {
+        return $this->_endCliente;
+    }
+
+    function get_cidadeCliente() {
+        return $this->_cidadeCliente;
+    }
+
+    function get_ufCliente() {
+        return $this->_ufCliente;
+    }
+
+    function get_tabelaCliente() {
+        return $this->_tabelaCliente;
+    }
+
+    function get_idUsuario() {
+        return $this->_idUsuario;
+    }
+
+    function set_idCliente($_idCliente) {
+        $this->_idCliente = $_idCliente;
+    }
+
+    function set_nascCliente($_nascCliente) {
+        $this->_nascCliente = $_nascCliente;
+    }
+
+    function set_foneCliente($_foneCliente) {
+        $this->_foneCliente = $_foneCliente;
+    }
+
+    function set_celCliente($_celCliente) {
+        $this->_celCliente = $_celCliente;
+    }
+
+    function set_endCliente($_endCliente) {
+        $this->_endCliente = $_endCliente;
+    }
+
+    function set_cidadeCliente($_cidadeCliente) {
+        $this->_cidadeCliente = $_cidadeCliente;
+    }
+
+    function set_ufCliente($_ufCliente) {
+        $this->_ufCliente = $_ufCliente;
+    }
+
+    function set_tabelaCliente($_tabelaCliente) {
+        $this->_tabelaCliente = $_tabelaCliente;
+    }
+
+    function set_idUsuario($_idUsuario) {
+        $this->_idUsuario = $_idUsuario;
+    }
 }
