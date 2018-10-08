@@ -10,7 +10,7 @@ class Genero {
     public $_descricaoGenero, $_nomeGenero;
     private $_dbGenero, $_tabelaGenero, $_idGenero;
     
-    public function __construct($nome = '',$descricao = '',$id = '') {
+    public function __construct($id = '',$nome = '',$descricao = '') {
         $this->set_idGenero($id);
         $this->set_nomeGenero($nome);
         $this->set_descricaoGenero($descricao);

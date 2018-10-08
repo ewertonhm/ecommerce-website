@@ -12,7 +12,7 @@ class Artista {
     public $_nomeArtista;
     private $_dbArtista, $_tabelaArtista, $_idArtista;
     
-    public function __construct($nome = '',$id = '') {
+    public function __construct($id = '', $nome = '') {
         $this->set_idArtista($id);
         $this->set_nomeArtista($nome);
         $this->set_tabelaArtista('artista');
@@ -58,11 +58,11 @@ class Artista {
         $this->_nomeArtista = $_nomeArtista;
     }
 
-    function set_tabelaArtista($_tabelaArtista) {
+    private function set_tabelaArtista($_tabelaArtista) {
         $this->_tabelaArtista = $_tabelaArtista;
     }
 
-    function set_idArtista($_idArtista) {
+    private function set_idArtista($_idArtista) {
         $this->_idArtista = $_idArtista;
     }
 
