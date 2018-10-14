@@ -10,7 +10,7 @@
         //array para exibir os avisos
         $erros = array();
             
-        if(empty(cleanstring($_POST['login'])) OR empty(cleanstring($_POST['senha']))){
+        if(empty($_POST['login']) OR empty($_POST['senha'])){
             $erros[] = "<li> O campo login e senha precias ser preenchido </li>";
         } else {
             $usuario = new Usuario();

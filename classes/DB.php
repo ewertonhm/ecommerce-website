@@ -112,6 +112,21 @@ class DB {
         $order = '';
         $limit = '';
         
+        
+        
+        //innerjoin
+        if(array_key_exists('joins', $params)){                
+            function bindjoin($array,$counter){
+                return $array["$counter"];
+            }
+            $counter = 0;
+            foreach($params['joins'] as $join){
+                $innerJoin .= ' INNER JOIN '.$join.' ON '.bindjoin($params['bindjoin'], $counter);
+                $counter++;
+            }
+        }
+
+        
         // conditions
         if(isset($params['conditions'])){
             if(is_array($params['conditions'])){
@@ -137,14 +152,15 @@ class DB {
         //order
         if(array_key_exists('order', $params)){
             $order = ' ORDER BY '.$params['order'];
-        }   
+        }
+        
         
         //limit
         if(array_key_exists('limit', $params)){
            $limit = ' LIMIT '.$params['limit']; 
         }
         
-        $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
+        $sql = "SELECT * FROM {$table}{$innerJoin}{$conditionString}{$order}{$limit}";
 
         //  se o query rodar mas não tiver resultados vai retornar false
         // se o query tiver sucesso e tiver resultados vai retornar true

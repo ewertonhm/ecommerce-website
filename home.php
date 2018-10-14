@@ -1,12 +1,9 @@
 <?php
-	// Titulo da Pagina
-	$page_title = 'Puro Som | HOME';
-?>
-
-<!-- <html> -->
-<?php
-    include "includes/top.php";
-    require_once "includes/navbar.php";
+    include_once "classes/_classes.php";
+    require_once "lib.php";
+    
+    top('Puro Som');
+    navbar();
 ?>
 <!-- <carrousel> -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -55,19 +52,17 @@
                     <div class="row">
                         <!-- produto -->
                         <?php
-                        // includes produto
-                        require_once 'functions.php';
-                        require_once 'classes/Produto.php';
                        
+                        $db = DB::get_instance();
                         
-                        $sqlprodutos = sqltoarray(  
-                                "SELECT produto.id,produto.nome AS nome, midia.sigla AS midia,artista.nome AS artista,album.nome AS album,genero.nome AS genero,produto.preco AS preco,produto.qtd_estoque FROM produto 
-                                INNER JOIN album ON produto.cod_album = album.id
-                                INNER JOIN midia ON produto.cod_midia = midia.id
-                                INNER JOIN artista ON album.cod_artista = artista.id
-                                INNER JOIN genero ON album.cod_genero = genero.id
-                                WHERE produto.qtd_estoque > 0;");
-                                foreach ($sqlprodutos as $sql) {
+                        $params = [
+                            'joins'=>['album','midia','artista','genero'],
+                            'bindjoin'=>['produto.cod_album = album.id','produto.cod_midia = midia.id','album.cod_artista = artista.id','album.cod_genero = genero.id'],
+                            'conditions'=>['produto.qtd_estoque > ?'],
+                            'bind'=>[0]
+                        ];
+                        $produtos = $db->find('produto',$params);
+                                foreach ($produtos as $sql) {
                                     $produto = new Produto();
                                     $produto->setIdProduto($sql['id']);
                                     $produto->setNomeProduto($sql['nome']);
@@ -105,5 +100,5 @@
     
 </div>
 <!-- </body> -->
-<?php include "includes/bottom.php";?>
+<?php include bottom();?>
 <!-- </html> -->
