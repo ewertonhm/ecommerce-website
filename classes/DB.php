@@ -124,6 +124,8 @@ class DB {
                 $innerJoin .= ' INNER JOIN '.$join.' ON '.bindjoin($params['bindjoin'], $counter);
                 $counter++;
             }
+        } else{
+            $innerJoin = '';
         }
 
         
